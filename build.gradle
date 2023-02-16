@@ -12,29 +12,64 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
-	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.projectlombok:lombok:1.18.22'
-//	runtimeOnly 'com.mysql:mysql-connector-j'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//dependencies {
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.projectlombok:lombok:1.18.22'
+//    runtimeOnly 'com.mysql:mysql-connector-j'
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //	implementation group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '6.0.0.Alpha6', ext: 'pom'
 //	implementation  group: 'org.hibernate', name: 'hibernate-core', version: '4.0.0.Beta2'
 //	implementation  group: 'org.hibernate', name: 'hibernate-core', version: '6.2.0.CR2'
+//	annotationProcessor "org.projectlombok:lombok:1.18.22"
+//	testAnnotationProcessor("org.projectlombok:lombok:1.18.22")
+//
+//	implementation 'javax.inject:javax.inject:1'
+//
+//	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+//
+//
+//
+//	runtimeOnly 'com.h2database:h2'
+//	runtimeOnly 'mysql:mysql-connector-java'
+//
+//
+//
+//}
 
 
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencies {
+
+
+	implementation 'org.projectlombok:lombok:1.18.22'
+	implementation group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '6.0.0.Alpha6', ext: 'pom'
+	implementation  group: 'org.hibernate', name: 'hibernate-core', version: '4.0.0.Beta2'
+	implementation  group: 'org.hibernate', name: 'hibernate-core', version: '6.2.0.CR2'
+
+	//implementation 'org.hibernate.dialect.MySQL5InnoDBDialect'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'javax.inject:javax.inject:1'
 
 	//providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
 
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-//	runtimeOnly 'com.h2database:h2'
-//	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor "org.projectlombok:lombok:1.18.22"
+	testAnnotationProcessor("org.projectlombok:lombok:1.18.22")
 
-
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()

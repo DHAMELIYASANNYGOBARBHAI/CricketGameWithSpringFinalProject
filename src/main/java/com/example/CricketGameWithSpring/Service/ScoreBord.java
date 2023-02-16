@@ -1,31 +1,22 @@
 package com.example.CricketGameWithSpring.Service;
 
+import com.example.CricketGameWithSpring.Dao.PlayerDao;
 import com.example.CricketGameWithSpring.Entity.Ball;
 import com.example.CricketGameWithSpring.Entity.Player;
 import com.example.CricketGameWithSpring.Entity.Team;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+
+
 public class ScoreBord
 {
+
+
     ArrayList<String> PrintScoreBordOfBattingTeam(Team T)
     {
-
-//        System.out.println( T.getTeamName() +" Innings");
-//        ArrayList<Player> player = T.getPlayers();
-//        System.out.println("+----------------------+----------+-------+----------+");
-//        System.out.println("|     Name             |    Role   | Runs  | Balls   |");
-//        System.out.println("+----------------------+----------+-------+----------+");
-//        for (Player p : player) {
-//            System.out.println(String.format("| %-20s | %-8s | %5d | %8d |", p.getName(), p.getRole(), p.getRunScoredByPlayer(), p.getBallsFacedByPlayer()));
-//        }
-//        System.out.println("+----------------------+----------+-------+----------+");
-//
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-
-
         ArrayList<String> tableRows = new ArrayList<>();
         ArrayList<Player> player = T.getPlayers();
         tableRows.add(T.getTeamName() + " Innings");
@@ -40,33 +31,12 @@ public class ScoreBord
         tableRows.add("");
         tableRows.add("");
 
-//        for (String row : tableRows) {
-//            System.out.println(row);
-//        }
-
         return tableRows;
 
     }
 
     ArrayList<String> PrintScoreBordOfBowlingTeam(Team T)
     {
-//        ArrayList<Player>  player = T.getPlayers();
-//        System.out.println("+----------------------+----------+-----------+---------------+------------+");
-//        System.out.println("|     Name             |    Role  |  Wickets  |  RunConsider  | BallBowled |");
-//        System.out.println("+----------------------+----------+-----------+---------------+------------+");
-//        for (Player p : player) {
-//            if (p.getRole().equals("Bowler"))
-//            {
-//                System.out.println(String.format("| %-20s | %-8s | %10d | %10d | %10d |", p.getName(), p.getRole(), p.getWicketTakenByPlayer(), p.getRunConsiderByPlayer(),p.getBallBowledByPlayer()));
-//
-//            }
-//        }
-//
-//        System.out.println("+----------------------+----------+-----------+---------------+------------+");
-//
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
 
 
         ArrayList<Player> player = T.getPlayers();
@@ -90,21 +60,8 @@ public class ScoreBord
     }
 
 
-    ArrayList<String> GetDetailOfBall(Team team) {
-//        ArrayList<Ball> BallDetail = team.getBallDetails();
-//
-//        System.out.println("+---------------------+---------------------+-------+-------+-------+");
-//        System.out.println("|    Batsman          |     Bowler          |  Ball |  Over | Runs  |");
-//        System.out.println("+---------------------+---------------------+-------+-------+-------+");
-//        for (Ball B : BallDetail) {
-//            System.out.println(String.format("| %-20s | %-20s | %5d | %5d | %5d |", B.getNameOfBatsman(), B.getNameOfBowler(), B.getSerialNoOfBall(), B.getOverNo(), B.getRuns()));
-//        }
-//        System.out.println("+---------------------+---------------------+-------+-------+--------+");
-//
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-
+    ArrayList<String> GetDetailOfBall(Team team)
+    {
         ArrayList<String> tableRows = new ArrayList<String>();
         tableRows.add("+---------------------+---------------------+-------+-------+-------+");
         tableRows.add("|    Batsman          |     Bowler          |  Ball |  Over | Runs  |");
@@ -122,7 +79,8 @@ public class ScoreBord
         return tableRows;
     }
 
-    public ArrayList<String> printMatchResult(Team team1, Team team2, int team1Score, int team2Score, int overs) {
+    public ArrayList<String> printMatchResult(Team team1, Team team2, int team1Score, int team2Score, int overs)
+    {
         ArrayList<String> result = new ArrayList<String>();
         result.add("+--------------------------------------------------+");
         result.add("|                 Match Result                     |");

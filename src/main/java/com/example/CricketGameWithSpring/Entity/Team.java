@@ -1,9 +1,15 @@
 package com.example.CricketGameWithSpring.Entity;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.ArrayList;
 
+@Data
 public class Team
 {
+
+    private int MatchId;
     private String TeamName;
     private int Score;
     private int WicketLoss;
@@ -14,11 +20,22 @@ public class Team
 
     private ArrayList<Player> bowlerInTeam;
 
+
+
     public String getTeamName() {
         return TeamName;
     }
 
-    public Team(String teamName,ArrayList<Player> players) {
+    public void setMatchId(int matchId) {
+        MatchId = matchId;
+
+        for(Player player : Players)
+        {
+            player.setMatchId(matchId);
+        }
+    }
+
+    public Team(String teamName, ArrayList<Player> players) {
         TeamName = teamName;
         Score = 0;
         WicketLoss = 0;

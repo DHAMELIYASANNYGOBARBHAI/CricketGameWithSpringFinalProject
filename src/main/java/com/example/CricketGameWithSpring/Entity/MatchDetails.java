@@ -1,7 +1,7 @@
 package com.example.CricketGameWithSpring.Entity;
 
 
-//import jakarta.persistence.Entity;
+import jakarta.persistence.Entity;
 import jdk.jfr.DataAmount;
 import lombok.Data;
 
@@ -16,9 +16,10 @@ public class MatchDetails
    private String team1Name;
    private String team2Name;
    private  int Overs;
-
-  ArrayList<Player> team1;
-  ArrayList<Player> team2;
+   ArrayList<Integer>team1PlayerId;
+   ArrayList<Integer>team2PlayerId;
+//  ArrayList<Player> team1;
+//  ArrayList<Player> team2;
 
     public void setTeam1Name(String team1Name) {
         this.team1Name = team1Name;
@@ -32,13 +33,7 @@ public class MatchDetails
         Overs = overs;
     }
 
-    public void setTeam1(ArrayList<Player> team1) {
-        this.team1 = team1;
-    }
 
-    public void setTeam2(ArrayList<Player> team2) {
-        this.team2 = team2;
-    }
 
     public String getTeam1Name() {
       return team1Name;
@@ -52,11 +47,5 @@ public class MatchDetails
       return Overs;
    }
 
-   public ArrayList<Player> getTeam1() {
-      return team1;
-   }
 
-   public ArrayList<Player> getTeam2() {
-      return team2;
-   }
 }

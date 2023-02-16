@@ -1,15 +1,30 @@
 package com.example.CricketGameWithSpring.Service;
 
-import com.example.CricketGameWithSpring.Entity.Ball;
-import com.example.CricketGameWithSpring.Entity.Player;
-import com.example.CricketGameWithSpring.Entity.Team;
+import com.example.CricketGameWithSpring.Dao.MatchInfoDao;
+import com.example.CricketGameWithSpring.Dao.PlayerDao;
+import com.example.CricketGameWithSpring.Dao.ScoreBordDetailsDao;
+import com.example.CricketGameWithSpring.Dao.TeamDao;
+import com.example.CricketGameWithSpring.Entity.*;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 
+@Data
+@Service
 public class Match
 {
-
+    private int matchId;
+    @Autowired
+    public ScoreBordDetailsDao scoreBordDetailsDao;
+    @Autowired
+    public  PlayerDao playerDao;
+    @Autowired
+    public  TeamDao teamDao;
+    @Autowired
+    public  MatchInfoDao matchInfoDao;
     Team team1;
     Team team2;
     public static final int numOfBallInOver = 6;
@@ -19,38 +34,92 @@ public class Match
     public static final int four = 4;
     private int Overs;
     private ScoreBord scoreBord = new ScoreBord();
-    Match(Team team1, Team team2, int overs)
-    {
-        this.team1 = team1;
-        this.team2 = team2;
-        this.Overs = overs;
-
-//        System.out.println(team1.getTeamName());
-//        System.out.println(team2.getTeamName());
-//        System.out.println(Overs);
-//        System.out.println(overs);
-
-    }
     public ArrayList<String> startGame()
     {
-        ArrayList<String> scoreBordDetail = new ArrayList<String>();
+        ScoreBordDetail scoreBordDetail = new ScoreBordDetail();
+
+        MatchInfo matchInfo = new MatchInfo();
+        MatchInfo lastDocument = matchInfoDao.findFirstByOrderByIdDesc().orElse(null);
+
+        if(lastDocument==null) matchId=1;
+        else matchId = lastDocument.getId()+1;
+
+        matchInfo.setId(matchId);
+        scoreBordDetail.setMatchID(matchId);
+
+        team1.setMatchId(matchId);
+        team2.setMatchId(matchId);
+
+
+        ArrayList<String> fullScoreBordDetail = new ArrayList<String>();
 
         if(toss()==1)  // it is  decided which team play first
         {
+            matchInfo.setTossWinner(team1.getTeamName());
+
             int scoreOfTeam1  = playGame(team1,team2);
             int scoreOfTeam2  = playGame(team2,team1);
-            scoreBordDetail = printScoreBord(team1,team2);
+            fullScoreBordDetail = printScoreBord(team1,team2);
+
+            matchInfo.setFirstInningOfMatchAllBallDetails(team1.getBallDetails());
+            matchInfo.setSecondInningOfMatchAllBallDetails(team2.getBallDetails());
+
+            if(scoreOfTeam1 > scoreOfTeam2)
+               matchInfo.setMatchWinner(team1.getTeamName());
+            else
+                matchInfo.setMatchWinner(team2.getTeamName());
         }
         else
         {
+            matchInfo.setTossWinner(team2.getTeamName());
             int scoreOfTeam2  = playGame(team2,team1);
             int scoreOfTeam1  = playGame(team1,team2);
-            scoreBordDetail = printScoreBord(team2,team1);
+            fullScoreBordDetail = printScoreBord(team2,team1);
+
+            matchInfo.setFirstInningOfMatchAllBallDetails(team2.getBallDetails());
+            matchInfo.setSecondInningOfMatchAllBallDetails(team1.getBallDetails());
+
+            if(scoreOfTeam1 > scoreOfTeam2)
+                matchInfo.setMatchWinner(team1.getTeamName());
+            else
+                matchInfo.setMatchWinner(team2.getTeamName());
         }
 
-       scoreBordDetail.addAll(scoreBord.printMatchResult(team1,team2,team1.getScore(), team2.getScore(), Overs));
 
-        return scoreBordDetail;
+        fullScoreBordDetail.addAll(scoreBord.printMatchResult(team1,team2,team1.getScore(), team2.getScore(), Overs));
+
+        ArrayList<Player> playersOfTeam1 = team1.getPlayers();
+        ArrayList<Player> playersOfTeam2 = team2.getPlayers();
+
+        for(Player p : playersOfTeam1) playerDao.save(p);
+        for(Player p : playersOfTeam2) playerDao.save(p);
+
+        TeamDetail team1Detail = new TeamDetail(team1);
+        TeamDetail team2Detail = new TeamDetail(team2);
+
+        teamDao.save(team1Detail);
+        teamDao.save(team2Detail);
+
+        matchInfo.setTeam1Name(team1.getTeamName());
+        matchInfo.setTeam2Name(team2.getTeamName());
+        matchInfoDao.save(matchInfo);
+
+          scoreBordDetail.setTeam1Name(team1.getTeamName());
+          scoreBordDetail.setScoreOfTeam1(team1.getScore());
+          scoreBordDetail.setOversPlayByTeam1(team1.getOversPlay());
+          scoreBordDetail.setWicketLossOfTeam1(team1.getWicketLoss());
+          scoreBordDetail.setPlayersOfTeam1(team1.getPlayers());
+
+          scoreBordDetail.setTeam2Name(team2.getTeamName());
+          scoreBordDetail.setScoreOfTeam2(team2.getScore());
+          scoreBordDetail.setWicketLossOfTeam2(team2.getWicketLoss());
+          scoreBordDetail.setOversPlayByTeam2(team2.getOversPlay());
+          scoreBordDetail.setPlayersOfTeam2(team2.getPlayers());
+
+          scoreBordDetailsDao.save(scoreBordDetail);
+
+
+        return fullScoreBordDetail;
     }
     private int toss()
     {
@@ -63,11 +132,11 @@ public class Match
         Player batsman1 = team1.getBatsman(batsmanNo++); // on strike
         Player batsman2 = team1.getBatsman(batsmanNo++); // off side
 
-        //System.out.println("over is "  + Overs);
+
 
         for(int i=0;i<Overs;i++)
         {
-             //System.out.println("hello");
+
             int NextBowlerNo = team2.getNextBowlerNo(lastBowlerNo);
             Player Bowler = team2.getBowler(NextBowlerNo);
             lastBowlerNo = NextBowlerNo;

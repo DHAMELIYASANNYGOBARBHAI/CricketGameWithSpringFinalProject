@@ -3,9 +3,18 @@ package com.example.CricketGameWithSpring.Entity;
 //import jakarta.persistence.Entity;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Player
 {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long playerId;
     private String Name;
     private String Role;
     private int RunScoredByPlayer;
@@ -13,6 +22,27 @@ public class Player
     private int WicketTakenByPlayer;
     private int BallBowledByPlayer;
     private int RunConsiderByPlayer;
+
+    private String teamName;
+
+    private int matchId;
+
+    public int getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(int matchId) {
+        this.matchId = matchId;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
     public Player()
     {
 
