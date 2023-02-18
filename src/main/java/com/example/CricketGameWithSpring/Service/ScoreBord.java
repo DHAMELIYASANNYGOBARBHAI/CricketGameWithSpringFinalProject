@@ -8,17 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class ScoreBord
 {
 
 
-    ArrayList<String> PrintScoreBordOfBattingTeam(Team T)
+   List<String> PrintScoreBordOfBattingTeam(Team T)
     {
-        ArrayList<String> tableRows = new ArrayList<>();
-        ArrayList<Player> player = T.getPlayers();
+         List<String> tableRows = new ArrayList<>();
+         List<Player> player = T.getPlayers();
         tableRows.add(T.getTeamName() + " Innings");
         tableRows.add("+----------------------+----------+-------+----------+");
         tableRows.add("|     Name             |    Role   | Runs  | Balls   |");
@@ -35,12 +35,12 @@ public class ScoreBord
 
     }
 
-    ArrayList<String> PrintScoreBordOfBowlingTeam(Team T)
+    List<String> PrintScoreBordOfBowlingTeam(Team T)
     {
 
 
-        ArrayList<Player> player = T.getPlayers();
-        ArrayList<String> tableRows = new ArrayList<>();
+        List<Player> player = T.getPlayers();
+       List<String> tableRows = new ArrayList<>();
 
         tableRows.add("+----------------------+----------+-----------+---------------+------------+");
         tableRows.add("|     Name             |    Role  |  Wickets  |  RunConsider  | BallBowled |");
@@ -60,14 +60,14 @@ public class ScoreBord
     }
 
 
-    ArrayList<String> GetDetailOfBall(Team team)
+    List<String> GetDetailOfBall(Team team)
     {
-        ArrayList<String> tableRows = new ArrayList<String>();
+        List<String> tableRows = new ArrayList<String>();
         tableRows.add("+---------------------+---------------------+-------+-------+-------+");
         tableRows.add("|    Batsman          |     Bowler          |  Ball |  Over | Runs  |");
         tableRows.add("+---------------------+---------------------+-------+-------+-------+");
 
-        ArrayList<Ball> BallDetail = team.getBallDetails();
+        List<Ball> BallDetail = team.getBallDetails();
         for (Ball B : BallDetail) {
             tableRows.add(String.format("| %-20s | %-20s | %5d | %5d | %5d |", B.getNameOfBatsman(), B.getNameOfBowler(), B.getSerialNoOfBall(), B.getOverNo(), B.getRuns()));
         }
@@ -79,9 +79,9 @@ public class ScoreBord
         return tableRows;
     }
 
-    public ArrayList<String> printMatchResult(Team team1, Team team2, int team1Score, int team2Score, int overs)
+    public List<String> printMatchResult(Team team1, Team team2, int team1Score, int team2Score, int overs)
     {
-        ArrayList<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<String>();
         result.add("+--------------------------------------------------+");
         result.add("|                 Match Result                     |");
         result.add("+--------------------------------------------------+");

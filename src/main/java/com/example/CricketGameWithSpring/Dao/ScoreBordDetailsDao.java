@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ScoreBordDetailsDao extends MongoRepository<ScoreBordDetail,Integer>
 {
-
+    ScoreBordDetail findBymatchID(int matchId);
 }

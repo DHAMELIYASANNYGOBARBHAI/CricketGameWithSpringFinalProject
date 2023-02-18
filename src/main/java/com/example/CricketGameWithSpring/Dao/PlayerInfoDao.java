@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlayerInfoDao extends JpaRepository<PlayerInfo, Integer>
 {
-   // @Query(value = "select max(matchdemo.id) from matchdemo",nativeQuery = true)
     @Query(value = "SELECT COUNT(*) FROM PlayerInfo WHERE PlayerInfo.player_id = :playerId",nativeQuery = true)
     int countById(@Param("playerId") int playerId);
 

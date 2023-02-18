@@ -7,18 +7,20 @@ import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Document(collection = "MatchInfo")
 public class MatchInfo
 {
     @Id
-    private int id;
+    private int Id;
     private String team1Name;
     private String team2Name;
     private String tossWinner;
     private String matchWinner;
 
-    private ArrayList<Ball> firstInningOfMatchAllBallDetails;
-    private ArrayList<Ball> secondInningOfMatchAllBallDetails;
+    private List<Ball> firstInningOfMatchAllBallDetails;
+    private List<Ball> secondInningOfMatchAllBallDetails;
 
 }

@@ -14,7 +14,6 @@ public class TeamDetail
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private int MatchId;
     private String TeamName;
     private int Score;

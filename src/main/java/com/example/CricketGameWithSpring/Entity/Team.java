@@ -1,36 +1,30 @@
 package com.example.CricketGameWithSpring.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Team
 {
-
     private int MatchId;
     private String TeamName;
     private int Score;
     private int WicketLoss;
     private int OversPlay;
-    private ArrayList<Player> Players;
-
-    ArrayList<Ball> BallDetails;
-
-    private ArrayList<Player> bowlerInTeam;
-
-
-
-    public String getTeamName() {
-        return TeamName;
-    }
+    private List<Player> Players;
+    private List<Ball> BallDetails;
+    private List<Player> bowlerInTeam;
 
     public void setMatchId(int matchId) {
         MatchId = matchId;
-
-        for(Player player : Players)
-        {
+        for(Player player : Players) {
             player.setMatchId(matchId);
         }
     }
@@ -45,52 +39,28 @@ public class Team
         bowlerInTeam = getBowlerInTeam();
 
     }
-
-    public int getScore() {
-        return Score;
-    }
-
-    public ArrayList<Player>  getPlayers()
-    {
-        return Players;
-    }
-
-    public int getWicketLoss() {
-        return WicketLoss;
-    }
-
-    public int getOversPlay() {
-        return OversPlay;
-    }
-
+    public List<Player>getPlayers(){return Players;}
     public void addScore(int run)
     {
         Score +=run;
     }
-
-    public ArrayList<Ball> getBallDetails()
-    {
-        return BallDetails;
-    }
-
     public void addWicketLoss()
     {
         WicketLoss++;
     }
-
     public void addOversPlay()
     {
         OversPlay++;
     }
-
     public void addBallDetails(Ball ball)
     {
         BallDetails.add(ball);
     }
 
-    public ArrayList<Player>  getBowlerInTeam() {
-        ArrayList<Player>  players = getPlayers();
-        ArrayList<Player>  bowlerInTeam = new ArrayList<Player>();
+    public List<Player>  getBowlerInTeam()
+    {
+        List<Player>  players = getPlayers();
+        List<Player>  bowlerInTeam = new ArrayList<Player>();
 
         for(Player player : players)
         {
