@@ -38,6 +38,11 @@ public class Team
         BallDetails = new ArrayList<>();
         bowlerInTeam = getBowlerInTeam();
 
+        if(bowlerInTeam.size()==1)
+        {
+            throw new IllegalArgumentException("Invalid Team Input");
+        }
+
     }
     public List<Player>getPlayers(){return Players;}
     public void addScore(int run)
@@ -78,10 +83,12 @@ public class Team
         return Players.get(BatsmanNo);
     }
 
-    public int getNextBowlerNo(int LastBowlerNo){
-        int nextBowlerNo = (int)(Math.random()*4);
+    public int getNextBowlerNo(int LastBowlerNo)
+    {
+        int numberOfBowlerInTeam = bowlerInTeam.size();
+        int nextBowlerNo = (int)(Math.random()*numberOfBowlerInTeam);
         while(LastBowlerNo == nextBowlerNo) {
-            nextBowlerNo =  (int)(Math.random()*4);
+            nextBowlerNo =  (int)(Math.random()*numberOfBowlerInTeam);
         }
         return nextBowlerNo;
     }

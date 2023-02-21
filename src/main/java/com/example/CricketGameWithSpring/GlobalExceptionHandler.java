@@ -24,6 +24,11 @@ public class GlobalExceptionHandler {
                 return null;
             }
 
+            public String getDetailMessageCode() {
+                return ErrorResponse.getDefaultDetailMessageCode(getClass(), "Wrong input Enter Valid Input");
+            }
+
+
             public String SendMessage()
             {
                 return "Player id is wrong";
