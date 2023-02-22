@@ -1,21 +1,18 @@
 package com.example.CricketGameWithSpring.Service;
 
-import com.example.CricketGameWithSpring.Dao.PlayerDao;
 import com.example.CricketGameWithSpring.Entity.Ball;
 import com.example.CricketGameWithSpring.Entity.Player;
 import com.example.CricketGameWithSpring.Entity.Team;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ScoreBord
+public class ScoreBordImp implements ScoreBordService
 {
 
 
-   List<String> PrintScoreBordOfBattingTeam(Team T)
+   public List<String> PrintScoreBordOfBattingTeam(Team T)
     {
          List<String> tableRows = new ArrayList<>();
          List<Player> player = T.getPlayers();
@@ -35,7 +32,7 @@ public class ScoreBord
 
     }
 
-    List<String> PrintScoreBordOfBowlingTeam(Team T)
+    public List<String> PrintScoreBordOfBowlingTeam(Team T)
     {
 
 
@@ -60,7 +57,7 @@ public class ScoreBord
     }
 
 
-    List<String> GetDetailOfBall(Team team)
+    public List<String> GetDetailOfBall(Team team)
     {
         List<String> tableRows = new ArrayList<String>();
         tableRows.add("+---------------------+---------------------+-------+-------+-------+");
@@ -83,7 +80,7 @@ public class ScoreBord
     {
         List<String> result = new ArrayList<String>();
         result.add("+--------------------------------------------------+");
-        result.add("|                 Match Result                     |");
+        result.add("|                 MatchImp Result                     |");
         result.add("+--------------------------------------------------+");
         result.add("| Team1: " + team1.getTeamName() + "                                    |");
         result.add("| Team2: " + team2.getTeamName() + "                                 |");
@@ -91,11 +88,11 @@ public class ScoreBord
         result.add("| Score: " + team2Score + " / " + team2.getWicketLoss() + " (" + team2.getOversPlay() + " overs)                      |");
         result.add("+--------------------------------------------------+");
         if (team1Score > team2Score) {
-            result.add("| " + team1.getTeamName() + " won the match                           |");
+            result.add("| " + team1.getTeamName() + " won the matchImp                           |");
         } else if (team2Score > team1Score) {
-            result.add("| " + team2.getTeamName() + " won the match                           |");
+            result.add("| " + team2.getTeamName() + " won the matchImp                           |");
         } else {
-            result.add("| The match was a draw                              |");
+            result.add("| The matchImp was a draw                              |");
         }
         result.add("+--------------------------------------------------+");
         return result;

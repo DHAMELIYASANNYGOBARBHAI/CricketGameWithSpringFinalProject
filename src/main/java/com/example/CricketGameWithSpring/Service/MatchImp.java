@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @Service
-public class Match
+public class MatchImp implements MatchService
 {
     private int matchId;
     @Autowired
@@ -34,7 +34,7 @@ public class Match
     public static final int six = 6;
     public static final int four = 4;
     private int Overs;
-    private ScoreBord scoreBord = new ScoreBord();
+    private ScoreBordImp scoreBord = new ScoreBordImp();
     public List<String> startGame()
     {
         ScoreBordDetail scoreBordDetail = new ScoreBordDetail();
@@ -129,11 +129,11 @@ public class Match
 
         return fullScoreBordDetail;
     }
-    private int toss()
+    public int toss()
     {
         return (int)(Math.random()*2);
     }
-    private int playGame(Team team1,Team team2) {
+    public int playGame(Team team1,Team team2) {
         int batsmanNo = 0;
         int lastBowlerNo = -1;
 
@@ -194,7 +194,7 @@ public class Match
         return team1.getScore();
     }
 
-    private int RandomFunction()
+    public int RandomFunction()
     {
         int num = (int)(Math.random()*150);
 
@@ -203,14 +203,14 @@ public class Match
         else if(num > 100) return four;
         else return (int)(Math.random()*5);
     }
-    private List<Player> StrikeChange(Player batsman1, Player batsman2) {
+    public List<Player> StrikeChange(Player batsman1, Player batsman2) {
         List<Player> p =  new ArrayList<Player> ();
         p.add(batsman2);
         p.add(batsman1);
 
         return p;
     }
-    private List<String> printScoreBord(Team team1, Team team2) {
+    public List<String> printScoreBord(Team team1, Team team2) {
 
         ArrayList<String> scoreBoard = new ArrayList<>();
 

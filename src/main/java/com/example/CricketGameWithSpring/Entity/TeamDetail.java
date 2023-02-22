@@ -1,10 +1,7 @@
 package com.example.CricketGameWithSpring.Entity;
 
-import com.example.CricketGameWithSpring.Service.Match;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.Optional;
 
 @Entity
 @Table(name = "team")

@@ -4,12 +4,11 @@ import com.example.CricketGameWithSpring.Entity.HistoryOfCricketMatch;
 import com.example.CricketGameWithSpring.Entity.MatchDetails;
 import com.example.CricketGameWithSpring.Entity.MatchInfo;
 import com.example.CricketGameWithSpring.Entity.ScoreBordDetail;
-import com.example.CricketGameWithSpring.Service.CricketService;
+import com.example.CricketGameWithSpring.Service.CricketServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,29 +16,29 @@ import java.util.List;
 public class MyController
 {
     @Autowired
-    public CricketService cricketService;
+    public CricketServiceImp cricketServiceImp;
 
     @PostMapping("/StartMatch")
     public List<String> startMatch(@RequestBody MatchDetails matchDetails) {
-          return cricketService.startGame(matchDetails);
+          return cricketServiceImp.startGame(matchDetails);
     }
 
     @GetMapping("/MatchDetail/{matchId}")
     HistoryOfCricketMatch getMatchDetails(@PathVariable String matchId)
     {
-        return cricketService.getMatchDetails(Integer.parseInt(matchId));
+        return cricketServiceImp.getMatchDetails(Integer.parseInt(matchId));
     }
 
-    @GetMapping("/MatchDetail/ScoreBord/{matchId}")
+    @GetMapping("/MatchDetail/ScoreBordImp/{matchId}")
     ScoreBordDetail getScoreBordDetailOfMatch(@PathVariable String matchId)
     {
-        return cricketService.getScoreBordDetailOfMatch(Integer.parseInt(matchId));
+        return cricketServiceImp.getScoreBordDetailOfMatch(Integer.parseInt(matchId));
     }
 
     @GetMapping("/MatchDetail/MatchInfo/{matchId}")
     MatchInfo getMatchInfoOfMatch(@PathVariable String matchId)
     {
-        return cricketService.getMatchInfoOfMatch(Integer.parseInt(matchId));
+        return cricketServiceImp.getMatchInfoOfMatch(Integer.parseInt(matchId));
     }
 
 
