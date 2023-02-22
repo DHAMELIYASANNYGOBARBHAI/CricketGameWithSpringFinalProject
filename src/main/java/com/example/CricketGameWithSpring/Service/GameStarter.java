@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface GameStarter
 {
-    public List<String> start(MatchDetails matchDetails)
+    public List<String> start(MatchDetails matchDetails);
     public Team getTeam(String teamName, List<Integer> teamPlayerId);
     public List<Player> getPlayersOfTeam(List<Integer> teamPlayerId);
 
