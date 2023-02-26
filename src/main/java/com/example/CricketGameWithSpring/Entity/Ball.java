@@ -2,16 +2,18 @@ package com.example.CricketGameWithSpring.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Ball
 {
-    private int OverNo;
-    private int SerialNoOfBall;
-    private String NameOfBatsman;
-    private String NameOfBowler;
-    private int Runs;
-    private Boolean IsWicket;
+    private int overNoOfBall;
+    private int serialNoOfBall;
+    private String nameOfBatsmanWhoPlayBall;
+    private String nameOfBowlerWhoBowledBall;
+    private int runsCoveredOnBall ;
+    private String typeOfBall;
 
 }

@@ -12,43 +12,51 @@ import java.util.List;
 public class GameStarterImp implements GameStarter
 {
     @Autowired
-    public PlayerInfoDao playerInfoDao;
+    private MatchInfoDao matchInfoDao;
     @Autowired
-    MatchImp matchImp;
-
+    private PlayerInfoDao playerInfoDao;
+    @Autowired
+    private MatchServiceImp matchServiceImp;
+    @Override
     public List<String> start(MatchDetails matchDetails)
     {
-        matchImp.setTeam1(getTeam(matchDetails.getTeam1Name(),matchDetails.getTeam1PlayerId()));
-        matchImp.setTeam2(getTeam(matchDetails.getTeam2Name(),matchDetails.getTeam2PlayerId()));
-        matchImp.setOvers(matchDetails.getOvers());
-
-        return matchImp.startGame();
+        matchServiceImp.setMatchId(this.setCurrentMatchId());
+        matchServiceImp.setTeam1(getTeam(matchDetails.getTeam1Name(),matchDetails.getTeam1PlayerId()));
+        matchServiceImp.setTeam2(getTeam(matchDetails.getTeam2Name(),matchDetails.getTeam2PlayerId()));
+        matchServiceImp.setOvers(matchDetails.getOvers());
+        return matchServiceImp.startGame();
     }
-    public Team getTeam(String teamName, List<Integer> teamPlayerId)
-    {
+
+    public  int setCurrentMatchId(){
+        MatchInfo lastDocument = matchInfoDao.findFirstByOrderByIdDesc().orElse(null);
+        if(lastDocument==null) return 1;
+        else return lastDocument.getId()+1;
+    }
+    @Override
+    public Team getTeam(String teamName, List<Integer> teamPlayerId){
         List<Player> players = getPlayersOfTeam(teamPlayerId);
-        Team team = new Team(teamName, (ArrayList<Player>) players);
+        Team team = new Team();
+        team.setMatchId(matchServiceImp.getMatchId());
+        team.setTeamName(teamName);
+        team.setPlayersOfTeam(players);
+        team.setBowlersInTeam(team.getBowlerInTeam());
         for(Player player : players) player.setTeamName(teamName);
         return team;
     }
-
-   public List<Player> getPlayersOfTeam(List<Integer> teamPlayerId)
-    {
+    @Override
+    public List<Player> getPlayersOfTeam(List<Integer> teamPlayerId){
         List<Player>  playersOfTeam = new ArrayList<Player>();
-        for(int id : teamPlayerId)
-        {
+        for(int id : teamPlayerId){
             int is_valid  = playerInfoDao.countById(id);
-            if(is_valid > 0)
-            {
-                playersOfTeam.add(new Player(playerInfoDao.findNameById(id), playerInfoDao.findRoleById(id)));
+            if(is_valid > 0){
+                Player player = new Player();
+                player.setPlayerName(playerInfoDao.findNameById(id));
+                player.setPlayerRole(playerInfoDao.findRoleById(id));
+                playersOfTeam.add(player);
             }
-            else {
-                // do something
-                throw new IllegalArgumentException("Invalid player ID: " + id);
-            }
+            else {throw new IllegalArgumentException("Invalid player ID: " + id);}
         }
-
-         return playersOfTeam;
+        return playersOfTeam;
     }
 
 }

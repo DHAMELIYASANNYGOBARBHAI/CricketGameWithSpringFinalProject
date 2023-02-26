@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Index;
 
 @Entity
 @Data
@@ -19,26 +20,24 @@ public class Player
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Index(name = "indexPlayerId")
     private Long playerId;
-    private String Name;
-    private String Role;
-    private int RunScoredByPlayer;
-    private int BallsFacedByPlayer;
-    private int WicketTakenByPlayer;
-    private int BallBowledByPlayer;
-    private int RunConsiderByPlayer;
+    @Index(name = "indexPlayerName")
+    private String playerName;
+    @Index(name = "indexPlayerRole")
+    private String playerRole;
+    @Index(name="indexTeamName")
     private String teamName;
+    @Index(name="indexMatchId")
     private int matchId;
-
-    public Player(String nameById, String roleById)
-    {
-        Name = nameById;
-        Role = roleById;
-    }
-
-    public void addRunByPlayer(int Run) {RunScoredByPlayer += Run;BallsFacedByPlayer++;}
-    public void addBallAtWicketDown() {BallsFacedByPlayer++;}
-    public void addRunConsiderByPlayer(int Run) {RunConsiderByPlayer +=Run;BallBowledByPlayer++;}
-    public void addWicketByPlayer() {WicketTakenByPlayer++;BallBowledByPlayer++;}
+    private int runScoredByPlayer;
+    private int ballsFacedByPlayer;
+    private int wicketTakenByPlayer;
+    private int ballBowledByPlayer;
+    private int runConsiderByPlayer;
+    public void addRunByPlayer(int run) {runScoredByPlayer += run;ballsFacedByPlayer++;}
+    public void addBallAtWicketDown() {ballsFacedByPlayer++;}
+    public void addRunConsiderByPlayer(int run) {runConsiderByPlayer +=run;ballBowledByPlayer++;}
+    public void addWicketByPlayer() {wicketTakenByPlayer++;ballBowledByPlayer++;}
 
 }

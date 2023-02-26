@@ -4,3 +4,6 @@ brew services start mongodb-community@6.0  ---> mongo db start (server)
 first start my sql server then -->
 /usr/local/mysql/bin/mysql -u root -p     ---> my sql start
 
+
+
+

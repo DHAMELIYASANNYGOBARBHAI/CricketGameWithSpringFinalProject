@@ -1,29 +1,33 @@
 package com.example.CricketGameWithSpring.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "team")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TeamDetail
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.hibernate.annotations.Index(name="indexId")
     private int id;
-    private int MatchId;
-    private String TeamName;
-    private int Score;
-    private int WicketLoss;
-    private int OversPlay;
-
-    public TeamDetail(Team team)
-    {
-        MatchId = team.getMatchId();
-        TeamName = team.getTeamName();
-        Score = team.getScore();
-        WicketLoss = team.getWicketLoss();
-        OversPlay = team.getOversPlay();
+    @org.hibernate.annotations.Index(name="indexMatchId")
+    private int matchId;
+    @org.hibernate.annotations.Index(name="indexTeamName")
+    private String teamName;
+    private int scoreOfTeam;
+    private int wicketLossOfTeam;
+    private int oversPlayByTeam=0;
+    public TeamDetail(Team team){
+        this.matchId = team.getMatchId();
+        this.teamName = team.getTeamName();
+        this.scoreOfTeam = team.getScoreOfTeam();
+        this.wicketLossOfTeam = team.getWicketLossOfTeam();
+        this.oversPlayByTeam = team.getOversPlayByTeam();
     }
-
 }

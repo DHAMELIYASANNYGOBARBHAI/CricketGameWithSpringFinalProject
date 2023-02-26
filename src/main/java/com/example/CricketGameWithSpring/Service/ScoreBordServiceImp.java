@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ScoreBordImp implements ScoreBordService
+public class ScoreBordServiceImp implements ScoreBordService
 {
 
 
@@ -21,7 +21,7 @@ public class ScoreBordImp implements ScoreBordService
         tableRows.add("|     Name             |    Role   | Runs  | Balls   |");
         tableRows.add("+----------------------+----------+-------+----------+");
         for (Player p : player) {
-            tableRows.add(String.format("| %-20s | %-8s | %5d | %8d |", p.getName(), p.getRole(), p.getRunScoredByPlayer(), p.getBallsFacedByPlayer()));
+            tableRows.add(String.format("| %-20s | %-8s | %5d | %8d |", p.getPlayerName(), p.getPlayerRole(), p.getRunScoredByPlayer(), p.getBallsFacedByPlayer()));
         }
         tableRows.add("+----------------------+----------+-------+----------+");
         tableRows.add("");
@@ -43,8 +43,8 @@ public class ScoreBordImp implements ScoreBordService
         tableRows.add("|     Name             |    Role  |  Wickets  |  RunConsider  | BallBowled |");
         tableRows.add("+----------------------+----------+-----------+---------------+------------+");
         for (Player p : player) {
-            if (p.getRole().equals("Bowler")) {
-                tableRows.add(String.format("| %-20s | %-8s | %10d | %10d | %10d |", p.getName(), p.getRole(), p.getWicketTakenByPlayer(), p.getRunConsiderByPlayer(), p.getBallBowledByPlayer()));
+            if (p.getPlayerRole().equals("Bowler")) {
+                tableRows.add(String.format("| %-20s | %-8s | %10d | %10d | %10d |", p.getPlayerName(), p.getPlayerRole(), p.getWicketTakenByPlayer(), p.getRunConsiderByPlayer(), p.getBallBowledByPlayer()));
             }
         }
         tableRows.add("+----------------------+----------+-----------+---------------+------------+");
@@ -64,9 +64,9 @@ public class ScoreBordImp implements ScoreBordService
         tableRows.add("|    Batsman          |     Bowler          |  Ball |  Over | Runs  |");
         tableRows.add("+---------------------+---------------------+-------+-------+-------+");
 
-        List<Ball> BallDetail = team.getBallDetails();
+        List<Ball> BallDetail = team.getBallDetailsOfTeam();
         for (Ball B : BallDetail) {
-            tableRows.add(String.format("| %-20s | %-20s | %5d | %5d | %5d |", B.getNameOfBatsman(), B.getNameOfBowler(), B.getSerialNoOfBall(), B.getOverNo(), B.getRuns()));
+            tableRows.add(String.format("| %-20s | %-20s | %5d | %5d | %5d |", B.getNameOfBatsmanWhoPlayBall(), B.getNameOfBowlerWhoBowledBall(), B.getSerialNoOfBall(), B.getOverNoOfBall(), B.getRunsCoveredOnBall()));
         }
         tableRows.add("+---------------------+---------------------+-------+-------+--------+");
         tableRows.add("");
@@ -84,8 +84,8 @@ public class ScoreBordImp implements ScoreBordService
         result.add("+--------------------------------------------------+");
         result.add("| Team1: " + team1.getTeamName() + "                                    |");
         result.add("| Team2: " + team2.getTeamName() + "                                 |");
-        result.add("| Score: " + team1Score + " / " + team1.getWicketLoss() + " (" + team1.getOversPlay() + " overs)                      |");
-        result.add("| Score: " + team2Score + " / " + team2.getWicketLoss() + " (" + team2.getOversPlay() + " overs)                      |");
+        result.add("| Score: " + team1Score + " / " + team1.getWicketLossOfTeam() + " (" + team1.getOversPlayByTeam() + " overs)                      |");
+        result.add("| Score: " + team2Score + " / " + team2.getWicketLossOfTeam() + " (" + team2.getOversPlayByTeam() + " overs)                      |");
         result.add("+--------------------------------------------------+");
         if (team1Score > team2Score) {
             result.add("| " + team1.getTeamName() + " won the matchImp                           |");

@@ -1,101 +1,61 @@
 package com.example.CricketGameWithSpring.Entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Team
 {
-    private int MatchId;
-    private String TeamName;
-    private int Score;
-    private int WicketLoss;
-    private int OversPlay;
-    private List<Player> Players;
-    private List<Ball> BallDetails;
-    private List<Player> bowlerInTeam;
-
-    public void setMatchId(int matchId) {
-        MatchId = matchId;
-        for(Player player : Players) {
-            player.setMatchId(matchId);
-        }
-    }
-
-    public Team(String teamName, ArrayList<Player> players) {
-        TeamName = teamName;
-        Score = 0;
-        WicketLoss = 0;
-        OversPlay = 0;
-        Players = players;
-        BallDetails = new ArrayList<>();
-        bowlerInTeam = getBowlerInTeam();
-
-        if(bowlerInTeam.size()==1)
-        {
-            throw new IllegalArgumentException("Invalid Team Input");
-        }
-
-    }
-    public List<Player>getPlayers(){return Players;}
+    private int matchId;
+    private String teamName;
+    private int scoreOfTeam;
+    private int wicketLossOfTeam;
+    private int oversPlayByTeam;
+    private List<Player> playersOfTeam = new ArrayList<>();
+    private List<Ball> ballDetailsOfTeam=new ArrayList<>();
+    private List<Player> bowlersInTeam = new ArrayList<>();
+    public List<Player>getPlayers(){return playersOfTeam;}
     public void addScore(int run)
     {
-        Score +=run;
+        this.scoreOfTeam +=run;
     }
     public void addWicketLoss()
     {
-        WicketLoss++;
+        this.wicketLossOfTeam++;
     }
     public void addOversPlay()
     {
-        OversPlay++;
+        this.oversPlayByTeam++;
     }
-    public void addBallDetails(Ball ball)
-    {
-        BallDetails.add(ball);
+    public void addBallDetails(Ball ball) {this.ballDetailsOfTeam.add(ball);}
+    public void setMatchId(int matchId){
+        this.matchId = matchId;
+        for(Player player : this.playersOfTeam){player.setMatchId(matchId);}
     }
-
-    public List<Player>  getBowlerInTeam()
-    {
-        List<Player>  players = getPlayers();
-        List<Player>  bowlerInTeam = new ArrayList<Player>();
-
-        for(Player player : players)
-        {
-            if(player.getRole().equals("Bowler")) {
-                bowlerInTeam.add(player);
-
-            }
-        }
-
+    public List<Player> getBowlerInTeam(){
+        List<Player> players = getPlayers();
+        List<Player> bowlerInTeam = players.stream()
+                .filter(player -> player.getPlayerRole().equals("Bowler"))
+                .collect(Collectors.toList());
+        if(bowlerInTeam.size()==1) {throw new IllegalArgumentException("Invalid Team Input");}
         return bowlerInTeam;
     }
-
-    public Player getBatsman(int BatsmanNo)
-    {
-        return Players.get(BatsmanNo);
-    }
-
-    public int getNextBowlerNo(int LastBowlerNo)
-    {
-        int numberOfBowlerInTeam = bowlerInTeam.size();
+    public Player getBatsman(int BatsmanNo){return playersOfTeam.get(BatsmanNo);}
+    public int getNextBowlerNo(int LastBowlerNo){
+        int numberOfBowlerInTeam = bowlersInTeam.size();
         int nextBowlerNo = (int)(Math.random()*numberOfBowlerInTeam);
-        while(LastBowlerNo == nextBowlerNo) {
-            nextBowlerNo =  (int)(Math.random()*numberOfBowlerInTeam);
-        }
+        while(LastBowlerNo == nextBowlerNo){nextBowlerNo =  (int)(Math.random()*numberOfBowlerInTeam);}
         return nextBowlerNo;
     }
-
     public Player getBowler(int bowlerNo)
     {
-        return bowlerInTeam.get(bowlerNo);
+        return bowlersInTeam.get(bowlerNo);
     }
 
 }
