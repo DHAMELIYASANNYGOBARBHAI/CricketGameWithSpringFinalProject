@@ -1,7 +1,8 @@
-package com.example.CricketGameWithSpring.Service;
+package com.example.CricketGameWithSpring.ServiceImp;
 
 import com.example.CricketGameWithSpring.Dao.*;
 import com.example.CricketGameWithSpring.Entity.*;
+import com.example.CricketGameWithSpring.Service.GameStarterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GameStarterImp implements GameStarter
+public class GameStarterServiceImp implements GameStarterService
 {
     @Autowired
     private MatchInfoDao matchInfoDao;

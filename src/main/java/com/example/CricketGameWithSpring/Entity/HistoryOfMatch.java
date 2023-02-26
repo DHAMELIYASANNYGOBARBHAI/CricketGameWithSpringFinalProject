@@ -1,11 +1,10 @@
 package com.example.CricketGameWithSpring.Entity;
 
-import com.example.CricketGameWithSpring.Service.MatchServiceImp;
+import com.example.CricketGameWithSpring.ServiceImp.MatchServiceImp;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Index;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 

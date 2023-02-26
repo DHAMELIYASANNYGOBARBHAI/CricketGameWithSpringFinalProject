@@ -1,6 +1,6 @@
 package com.example.CricketGameWithSpring.Entity;
 
-import com.example.CricketGameWithSpring.Service.MatchServiceImp;
+import com.example.CricketGameWithSpring.ServiceImp.MatchServiceImp;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;

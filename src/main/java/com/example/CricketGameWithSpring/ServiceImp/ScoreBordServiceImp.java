@@ -1,8 +1,9 @@
-package com.example.CricketGameWithSpring.Service;
+package com.example.CricketGameWithSpring.ServiceImp;
 
 import com.example.CricketGameWithSpring.Entity.Ball;
 import com.example.CricketGameWithSpring.Entity.Player;
 import com.example.CricketGameWithSpring.Entity.Team;
+import com.example.CricketGameWithSpring.Service.ScoreBordService;
 
 import java.util.ArrayList;
 import java.util.List;

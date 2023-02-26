@@ -1,8 +1,6 @@
 package com.example.CricketGameWithSpring.Service;
 
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.example.CricketGameWithSpring.ServiceImp.MatchServiceImp;
 
 
 public interface SavingDataInDatabaseService {

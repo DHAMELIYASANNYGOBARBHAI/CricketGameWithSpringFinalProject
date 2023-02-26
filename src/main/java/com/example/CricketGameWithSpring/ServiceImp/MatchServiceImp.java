@@ -1,7 +1,7 @@
-package com.example.CricketGameWithSpring.Service;
+package com.example.CricketGameWithSpring.ServiceImp;
 
-import com.example.CricketGameWithSpring.Dao.*;
 import com.example.CricketGameWithSpring.Entity.*;
+import com.example.CricketGameWithSpring.Service.*;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

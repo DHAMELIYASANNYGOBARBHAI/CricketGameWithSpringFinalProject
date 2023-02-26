@@ -1,6 +1,6 @@
 package com.example.CricketGameWithSpring.Service;
 
-import org.springframework.stereotype.Service;
+import com.example.CricketGameWithSpring.ServiceImp.MatchServiceImp;
 
 import java.util.List;
 
