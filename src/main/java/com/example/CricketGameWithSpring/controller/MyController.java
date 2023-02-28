@@ -35,21 +35,19 @@ public class MyController
 
     @PostMapping("/StartMatch")
     public List<String> startMatch(@RequestBody MatchDetails matchDetails) {
-          return cricketService.startGame(matchDetails);
+        return cricketService.startGame(matchDetails);
     }
 
     @GetMapping("/MatchDetail/ScoreBordImp/{matchId}") //ScoreBordDetail
     ScoreBordDetail getScoreBordDetailOfMatch(@PathVariable String matchId)
     {
         return scoreBordDetailService.getScoreBordDetailOfMatch(Integer.parseInt(matchId));
-      //  return cricketService.getScoreBordDetailOfMatch(Integer.parseInt(matchId));
     }
 
     @GetMapping("/MatchDetail/ScoreBordDetailUsingTeam/{teamName}") //ScoreBordDetail
     List<ScoreBordDetail> getScoreBordDetailOfMatchUsingTeam(@PathVariable String teamName)
     {
         return scoreBordDetailService.getScoreBordDetailOfMatchUsingTeam(teamName);
-      //  return cricketService.getScoreBordDetailOfMatchUsingTeam(teamName);
     }
 
     @GetMapping("/MatchDetail/MatchInfo/{matchId}")
@@ -67,7 +65,6 @@ public class MyController
     @GetMapping("/MatchDetail/Player/{playerName}")
     List<Player> getPlayerByPlayerName(@PathVariable String playerName)
     {
-
         return playerService.getPlayerByPlayerName(playerName);
     }
 
@@ -86,7 +83,6 @@ public class MyController
     @GetMapping("/historyOfMatchDetail/{matchId}")
     HistoryOfMatch getMatchDetails(@PathVariable String matchId)
     {
-
         return historyOfMatchService.getMatchDetails(Integer.parseInt(matchId));
     }
 

@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
@@ -16,11 +17,11 @@ import java.util.List;
 public class MatchInfo
 {
     @Id
-    @Indexed(name="indexId")
+    @Indexed(name="indexId1")
     private int id;
-    @Indexed(name="indexTeam1Name")
+    @Indexed(name="indexTeam1Name1")
     private String team1Name;
-    @Indexed(name="indexTeam2Name")
+    @Indexed(name="indexTeam2Name1")
     private String team2Name;
     private String tossWinnerTeamName;
     private String matchWinnerTeamName;
