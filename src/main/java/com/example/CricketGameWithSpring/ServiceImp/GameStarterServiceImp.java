@@ -2,9 +2,13 @@ package com.example.CricketGameWithSpring.ServiceImp;
 
 import com.example.CricketGameWithSpring.Dao.*;
 import com.example.CricketGameWithSpring.Entity.*;
+import com.example.CricketGameWithSpring.InputValidationException;
 import com.example.CricketGameWithSpring.Service.GameStarterService;
+import com.example.CricketGameWithSpring.controller.MyController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +59,10 @@ public class GameStarterServiceImp implements GameStarterService
                 player.setPlayerRole(playerInfoDao.findRoleById(id));
                 playersOfTeam.add(player);
             }
-            else {throw new IllegalArgumentException("Invalid player ID: " + id);}
+            else {throw new InputValidationException("YOU are NOT Give Valid Player Input ID Player , Please Give valid Input Id from our PlayerInfo table");}
         }
         return playersOfTeam;
     }
+
 
 }

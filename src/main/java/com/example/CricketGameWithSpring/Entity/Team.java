@@ -1,5 +1,6 @@
 package com.example.CricketGameWithSpring.Entity;
 
+import com.example.CricketGameWithSpring.InputValidationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,7 +44,7 @@ public class Team
         List<Player> bowlerInTeam = players.stream()
                 .filter(player -> player.getPlayerRole().equals("Bowler"))
                 .collect(Collectors.toList());
-        if(bowlerInTeam.size()==1) {throw new IllegalArgumentException("Invalid Team Input");}
+        if(bowlerInTeam.size()==1) {throw new InputValidationException("In " + this.getTeamName() + " Team You are only insert One Bowler you need atLeast Two Bowler");};
         return bowlerInTeam;
     }
     public Player getBatsman(int BatsmanNo){return playersOfTeam.get(BatsmanNo);}
