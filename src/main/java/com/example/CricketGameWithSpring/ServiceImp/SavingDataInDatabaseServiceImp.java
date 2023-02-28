@@ -23,8 +23,8 @@ public class SavingDataInDatabaseServiceImp implements SavingDataInDatabaseServi
     @Override
     public void savingCricketMatchRelatedDataInDatabase(MatchServiceImp matchServiceImp){
 
-        for(Player player:matchServiceImp.getTeam1().getPlayersOfTeam()) playerDao.save(player);
-        for(Player player:matchServiceImp.getTeam2().getPlayersOfTeam()) playerDao.save(player);
+        for(Player player:matchServiceImp.getTeam1().getPlayersOfTeam()){player.setMatchId(matchServiceImp.getMatchId());playerDao.save(player);}
+        for(Player player:matchServiceImp.getTeam2().getPlayersOfTeam()){player.setMatchId(matchServiceImp.getMatchId());playerDao.save(player);}
 
         TeamDetail team1Detail = new TeamDetail(matchServiceImp.getTeam1());
         teamDetailDao.save(team1Detail);

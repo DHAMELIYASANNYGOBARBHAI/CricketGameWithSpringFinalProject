@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PlayerInfoService {
     List<PlayerInfo> getPlayerInfoByPlayerName(String playerRole);
+
+    void cheakPlayerInfoTableIspresentOrNot();
 }

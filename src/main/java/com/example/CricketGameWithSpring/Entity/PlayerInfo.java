@@ -3,11 +3,15 @@ package com.example.CricketGameWithSpring.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Index;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class PlayerInfo
 {
     @Id
@@ -17,4 +21,6 @@ public class PlayerInfo
     private String playerName;
     @Index(name="index_player_role")
     private String  playerRole;
+
+
 }
