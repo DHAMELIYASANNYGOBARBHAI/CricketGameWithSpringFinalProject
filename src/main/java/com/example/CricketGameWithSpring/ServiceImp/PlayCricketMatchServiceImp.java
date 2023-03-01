@@ -19,69 +19,66 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
     public static final int four = 4;
 
     @Override
-    public int playCricketMatchBetweenTwoTeam(Team battingTeam,Team bowlingTeam ,int Overs){
+    public int playCricketMatchBetweenTwoTeam(Team battingTeam,Team bowlingTeam ,int overs){
 
             int batsmanNo = 0;
             int lastBowlerNo = -1;
 
-            Player batsman1 = battingTeam.getBatsman(batsmanNo++); // on strike
-            Player batsman2 = battingTeam.getBatsman(batsmanNo++); // off side
+            Player strikerBatsman = battingTeam.getBatsman(batsmanNo++); // on strike
+            Player onStrikerBatsman = battingTeam.getBatsman(batsmanNo++); // off side
 
-            for(int i=0;i<Overs;i++)
+            for(int i=0;i<overs;i++)
             {
 
                 int NextBowlerNo = bowlingTeam.getNextBowlerNo(lastBowlerNo);
-                Player Bowler = bowlingTeam.getBowler(NextBowlerNo);
+                Player bowler = bowlingTeam.getBowler(NextBowlerNo);
                 lastBowlerNo = NextBowlerNo;
 
                 for(int j=0;j<numOfBallInOver;j++)
                 {
-                    int run = RandomFunction();
+                    int run = randomRunOrWicketGeneratorOnEveryBall()  ;
 
                     if(run==wicket)
                     {
                         // consider as wicket for Now
-                        Ball ball = new Ball(i,j,batsman1.getPlayerName(),Bowler.getPlayerName(),0,"WicketDown");
-                        Bowler.addWicketByPlayer();
-                        batsman1.addBallAtWicketDown();
+                        Ball ball = new Ball(i,j,strikerBatsman.getPlayerName(),bowler.getPlayerName(),0,"WicketDown");
+                        bowler.addWicketByPlayer();
+                        strikerBatsman.addBallAtWicketDown();
                         battingTeam.addBallDetails(ball);
                         battingTeam.addWicketLoss();
                         if(battingTeam.getWicketLossOfTeam() == lastWicket) {return battingTeam.getScoreOfTeam();}
-                        batsman1 = battingTeam.getBatsman(batsmanNo++);
+                        strikerBatsman = battingTeam.getBatsman(batsmanNo++);
                     }
                     else
                     {
                         // 0,1,2,3,4,5,6
-                        Ball ball = new Ball(i,j,batsman1.getPlayerName(),Bowler.getPlayerName(),run,Integer.toString(run)+" Run gained On this Ball");
-                        batsman1.addRunByPlayer(run);
-                        Bowler.addRunConsiderByPlayer(run);
+                        Ball ball = new Ball(i,j,strikerBatsman.getPlayerName(),bowler.getPlayerName(),run,Integer.toString(run)+" Run gained On this Ball");
+                        strikerBatsman.addRunByPlayer(run);
+                        bowler.addRunConsiderByPlayer(run);
                         battingTeam.addScore(run);
                         battingTeam.addBallDetails(ball);
                         if((run%2) == 1) {
-                            // Strike change  by batsman at run : 1,3,5
-                            List<Player> newPositionOfBatsman=  StrikeChange(batsman1,batsman2);
-                            batsman1 = newPositionOfBatsman.get(0);
-                            batsman2 = newPositionOfBatsman.get(1);
+                            // Strike change  by batsman at run : 1,3,5  here we can use this also --->  Player tempPlayer = strikerBatsman;strikerBatsman = batsman2;batsman2 = tempPlayer;
+                            List<Player> newPositionOfBatsman=  StrikeChange(strikerBatsman,onStrikerBatsman);
+                            strikerBatsman = newPositionOfBatsman.get(0);
+                            onStrikerBatsman = newPositionOfBatsman.get(1);
                         }
 
-
                     }
-
-
                 }
 
                 battingTeam.addOversPlay();
                 // Strike change every over
-                List<Player> newPositionOfBatsman =  StrikeChange(batsman1,batsman2);
-                batsman1 = newPositionOfBatsman.get(0);
-                batsman2 = newPositionOfBatsman.get(1);
+                List<Player> newPositionOfBatsman =  StrikeChange(strikerBatsman,onStrikerBatsman);
+                strikerBatsman = newPositionOfBatsman.get(0);
+                onStrikerBatsman = newPositionOfBatsman.get(1);
             }
 
             return battingTeam.getScoreOfTeam();
 
     }
 
-    public int RandomFunction(){
+    public int randomRunOrWicketGeneratorOnEveryBall(){
         int num = (int)(Math.random()*150);
         if(num > 140) return wicket;
         else if(num > 130) return six;
@@ -93,7 +90,6 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
         List<Player> p =  new ArrayList<Player>();
         p.add(batsman2);
         p.add(batsman1);
-
         return p;
     }
 }

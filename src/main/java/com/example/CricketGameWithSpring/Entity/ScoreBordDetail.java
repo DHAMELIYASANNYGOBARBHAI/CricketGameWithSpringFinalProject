@@ -16,8 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @Document(collection = "ScoreBordDetail")
 @CompoundIndex(name="indexTeam1Name",def = "{'team1Name':1}")
-
-//@CompoundIndex(def = "{'team1Name': 1, 'team2Name': 1}")
 public class ScoreBordDetail
 {
     @Id

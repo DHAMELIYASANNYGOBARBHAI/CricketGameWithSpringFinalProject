@@ -1,4 +1,4 @@
-package com.example.CricketGameWithSpring;
+package com.example.CricketGameWithSpring.Exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -2,13 +2,10 @@ package com.example.CricketGameWithSpring.ServiceImp;
 
 import com.example.CricketGameWithSpring.Dao.*;
 import com.example.CricketGameWithSpring.Entity.*;
-import com.example.CricketGameWithSpring.InputValidationException;
+import com.example.CricketGameWithSpring.Exception.InputValidationException;
 import com.example.CricketGameWithSpring.Service.GameStarterService;
-import com.example.CricketGameWithSpring.controller.MyController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +29,14 @@ public class GameStarterServiceImp implements GameStarterService
         return matchServiceImp.startGame();
     }
 
-    public  int setCurrentMatchId(){
+    public int setCurrentMatchId(){
         MatchInfo lastDocument = matchInfoDao.findFirstByOrderByIdDesc().orElse(null);
         if(lastDocument==null) return 1;
         else return lastDocument.getId()+1;
     }
     @Override
     public Team getTeam(String teamName, List<Integer> teamPlayerId){
-        List<Player> players = getPlayersOfTeam(teamPlayerId);
+        List<Player> players = getPlayersOfTeam(teamName,teamPlayerId);
         Team team = new Team();
         team.setMatchId(matchServiceImp.getMatchId());
         team.setTeamName(teamName);
@@ -49,7 +46,7 @@ public class GameStarterServiceImp implements GameStarterService
         return team;
     }
     @Override
-    public List<Player> getPlayersOfTeam(List<Integer> teamPlayerId){
+    public List<Player> getPlayersOfTeam(String teamName,List<Integer> teamPlayerId){
         List<Player>  playersOfTeam = new ArrayList<Player>();
         for(int id : teamPlayerId){
             int is_valid  = playerInfoDao.countById(id);
@@ -59,7 +56,7 @@ public class GameStarterServiceImp implements GameStarterService
                 player.setPlayerRole(playerInfoDao.findRoleById(id));
                 playersOfTeam.add(player);
             }
-            else {throw new InputValidationException("YOU are NOT Give Valid Player Input ID Player , Please Give valid Input Id from our PlayerInfo table");}
+            else {throw new InputValidationException("I'm sorry, it appears that the input ID provided is not valid in " +teamName+ " Team.Please provide a valid input ID from the PlayerInfo table. Thank you.");}
         }
         return playersOfTeam;
     }

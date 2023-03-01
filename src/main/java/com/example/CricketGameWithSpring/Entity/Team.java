@@ -1,6 +1,6 @@
 package com.example.CricketGameWithSpring.Entity;
 
-import com.example.CricketGameWithSpring.InputValidationException;
+import com.example.CricketGameWithSpring.Exception.InputValidationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,7 +44,7 @@ public class Team
         List<Player> bowlerInTeam = players.stream()
                 .filter(player -> player.getPlayerRole().equals("Bowler"))
                 .collect(Collectors.toList());
-        if(bowlerInTeam.size()==1) {throw new InputValidationException("In " + this.getTeamName() + " Team You are only insert One Bowler you need atLeast Two Bowler");};
+        if(bowlerInTeam.size()==1) {throw new InputValidationException("You have only inserted one bowler in the " + this.getTeamName() + " team. You need to have at least two bowlers.");};
         return bowlerInTeam;
     }
     public Player getBatsman(int BatsmanNo){return playersOfTeam.get(BatsmanNo);}

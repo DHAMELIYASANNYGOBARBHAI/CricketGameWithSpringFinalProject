@@ -1,16 +1,15 @@
-package com.example.CricketGameWithSpring.controller;
+package com.example.CricketGameWithSpring.Controller;
 
 import com.example.CricketGameWithSpring.Entity.*;
 import com.example.CricketGameWithSpring.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@Configurable
+//@Configurable
 public class  MyController
 {
     @Autowired
@@ -36,7 +35,7 @@ public class  MyController
 
     @PostMapping("/StartMatch")
     public List<String> startMatch(@RequestBody MatchDetails matchDetails) {
-        playerInfoService.cheakPlayerInfoTableIspresentOrNot();
+        playerInfoService.checkPlayersInfoPresentOrNot();
         return cricketService.startGame(matchDetails);
     }
 

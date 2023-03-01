@@ -13,7 +13,7 @@ public class ScoreBordServiceImp implements ScoreBordService
 {
 
 
-   public List<String> PrintScoreBordOfBattingTeam(Team T)
+   public List<String> printScoreBordOfBattingTeam(Team T)
     {
          List<String> tableRows = new ArrayList<>();
          List<Player> player = T.getPlayers();
@@ -33,7 +33,7 @@ public class ScoreBordServiceImp implements ScoreBordService
 
     }
 
-    public List<String> PrintScoreBordOfBowlingTeam(Team T)
+    public List<String> printScoreBordOfBowlingTeam(Team T)
     {
 
 
@@ -58,7 +58,7 @@ public class ScoreBordServiceImp implements ScoreBordService
     }
 
 
-    public List<String> GetDetailOfBall(Team team)
+    public List<String> getDetailOfBall(Team team)
     {
         List<String> tableRows = new ArrayList<String>();
         tableRows.add("+---------------------+---------------------+-------+-------+-------+");

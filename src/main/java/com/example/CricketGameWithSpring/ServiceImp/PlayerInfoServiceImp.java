@@ -18,7 +18,7 @@ public class PlayerInfoServiceImp implements PlayerInfoService {
     public List<PlayerInfo> getPlayerInfoByPlayerName(String playerRole) {return playerInfoDao.findByRole(playerRole);}
 
     @Override
-    public void cheakPlayerInfoTableIspresentOrNot() {
+    public void checkPlayersInfoPresentOrNot() {
         long tableExists = playerInfoDao.count();
         if (tableExists==0) {
 
@@ -27,7 +27,7 @@ public class PlayerInfoServiceImp implements PlayerInfoService {
 
             for (int i = 1; i <= 35; i++) {
                 int id = i; // generate random ID between 1 and 100
-                String name = "Player " + i; // generate player name
+                String name = "Player" + i; // generate player name
                 String[] roles = {"Batsman", "Bowler", "All-rounder"}; // list of possible roles
                 String role = roles[random.nextInt(roles.length)]; // generate random role from list
                 PlayerInfo playerInfo = new PlayerInfo(id, name, role);

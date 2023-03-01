@@ -1,4 +1,4 @@
-package com.example.CricketGameWithSpring;
+package com.example.CricketGameWithSpring.Exception;
 
 public class InputValidationException extends RuntimeException {
     public InputValidationException(String message) {
