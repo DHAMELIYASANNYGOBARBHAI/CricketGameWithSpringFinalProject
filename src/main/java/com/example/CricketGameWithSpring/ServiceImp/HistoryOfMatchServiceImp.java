@@ -12,6 +12,6 @@ public class HistoryOfMatchServiceImp implements HistoryOfMatchService {
     HistoryOfMatchDao historyOfMatchDao;
     @Override
     public HistoryOfMatch getMatchDetails(int matchId){
-        return historyOfMatchDao.findBymatchId(matchId);
+        return historyOfMatchDao.findByMatchId(matchId);
     }
 }

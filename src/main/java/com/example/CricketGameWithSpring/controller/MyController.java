@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @Configurable
-public class MyController
+public class  MyController
 {
     @Autowired
     public CricketService cricketService;

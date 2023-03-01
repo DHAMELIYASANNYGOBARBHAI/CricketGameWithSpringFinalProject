@@ -5,4 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HistoryOfMatchDao extends MongoRepository<HistoryOfMatch, Integer> { HistoryOfMatch findBymatchId(int matchId);}
+public interface HistoryOfMatchDao extends MongoRepository<HistoryOfMatch, Integer> {
+    HistoryOfMatch findByMatchId(int matchId);
+}

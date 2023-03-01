@@ -21,7 +21,7 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
     @Override
     public int playCricketMatchBetweenTwoTeam(Team battingTeam,Team bowlingTeam ,int Overs){
 
-        int batsmanNo = 0;
+            int batsmanNo = 0;
             int lastBowlerNo = -1;
 
             Player batsman1 = battingTeam.getBatsman(batsmanNo++); // on strike
