@@ -16,6 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 public class MatchInfo
 {
+    public MatchInfo(int id, String team1Name, String team2Name, String tossWinnerTeamName, String matchWinnerTeamName) {
+        this.id = id;
+        this.team1Name = team1Name;
+        this.team2Name = team2Name;
+        this.tossWinnerTeamName = tossWinnerTeamName;
+        this.matchWinnerTeamName = matchWinnerTeamName;
+    }
+
     @Id
     @Indexed(name="indexId1")
     private int id;

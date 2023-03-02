@@ -33,49 +33,49 @@ public class  MyController
     @Autowired
     TeamDetailService teamDetailService;
 
-    @PostMapping("/StartMatch")
+    @PostMapping("/startMatch")
     public List<String> startMatch(@RequestBody MatchDetails matchDetails) {
-        playerInfoService.checkPlayersInfoPresentOrNot();
+
         return cricketService.startGame(matchDetails);
     }
 
-    @GetMapping("/MatchDetail/ScoreBordImp/{matchId}") //ScoreBordDetail
+    @GetMapping("/matchDetail/scoreBordImp/{matchId}") //ScoreBordDetail
     ScoreBordDetail getScoreBordDetailOfMatch(@PathVariable String matchId)
     {
         return scoreBordDetailService.getScoreBordDetailOfMatch(Integer.parseInt(matchId));
     }
 
-    @GetMapping("/MatchDetail/ScoreBordDetailUsingTeam/{teamName}") //ScoreBordDetail
+    @GetMapping("/matchDetail/scoreBordDetailUsingTeam/{teamName}") //ScoreBordDetail
     List<ScoreBordDetail> getScoreBordDetailOfMatchUsingTeam(@PathVariable String teamName)
     {
         return scoreBordDetailService.getScoreBordDetailOfMatchUsingTeam(teamName);
     }
 
-    @GetMapping("/MatchDetail/MatchInfo/{matchId}")
+    @GetMapping("/matchDetail/matchInfo/{matchId}")
     MatchInfo getMatchInfoOfMatch(@PathVariable String matchId)
     {
         return matchInfoService.getMatchInfoOfMatch(Integer.parseInt(matchId));
     }
 
-    @GetMapping("/MatchDetail/MatchInfoUsingTeam/{teamName}")
+    @GetMapping("/matchDetail/matchInfoUsingTeam/{teamName}")
     List<MatchInfo> getMatchInfoOfMatchUsingTeam(@PathVariable String teamName)
     {
         return matchInfoService.getMatchInfoOfMatchUsingTeam(teamName);
     }
 
-    @GetMapping("/MatchDetail/Player/{playerName}")
+    @GetMapping("/matchDetail/player/{playerName}")
     List<Player> getPlayerByPlayerName(@PathVariable String playerName)
     {
         return playerService.getPlayerByPlayerName(playerName);
     }
 
-    @GetMapping("/MatchDetail/PlayerInfo/{playerRole}")
+    @GetMapping("/matchDetail/playerInfo/{playerRole}")
     List<PlayerInfo> getPlayerInfoByPlayerRole(@PathVariable String playerRole)
     {
 
-        return playerInfoService.getPlayerInfoByPlayerName(playerRole);
+        return playerInfoService.getPlayerInfoByPlayerRole(playerRole);
     }
-    @GetMapping("/MatchDetail/TeamDetail/{teamName}")
+    @GetMapping("/matchDetail/teamDetail/{teamName}")
     List<TeamDetail> getTeamDetailByTeamName(@PathVariable String teamName)
     {
 

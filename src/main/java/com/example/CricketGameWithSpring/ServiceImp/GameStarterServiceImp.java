@@ -41,7 +41,7 @@ public class GameStarterServiceImp implements GameStarterService
         team.setMatchId(matchServiceImp.getMatchId());
         team.setTeamName(teamName);
         team.setPlayersOfTeam(players);
-        team.setBowlersInTeam(team.getBowlerInTeam());
+        team.setBowlersInTeam(team.getBowlerOrAllRounderInTeam());
         for(Player player : players) player.setTeamName(teamName);
         return team;
     }

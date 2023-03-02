@@ -47,4 +47,17 @@ public class ScoreBordDetail
         this.oversPlayByTeam2 = matchServiceImp.getTeam2().getOversPlayByTeam();
         this.playersOfTeam2 = matchServiceImp.getTeam2().getPlayersOfTeam();
     }
+
+    public ScoreBordDetail(int matchID, String team1Name, int scoreOfTeam1, int wicketLossOfTeam1, int oversPlayByTeam1, String team2Name,int scoreOfTeam2, int wicketLossOfTeam2, int oversPlayByTeam2) {
+        this.matchID = matchID;
+        this.team1Name = team1Name;
+        this.team2Name = team2Name;
+        this.scoreOfTeam1 = scoreOfTeam1;
+        this.wicketLossOfTeam1 = wicketLossOfTeam1;
+        this.oversPlayByTeam1 = oversPlayByTeam1;
+        this.scoreOfTeam2 = scoreOfTeam2;
+        this.wicketLossOfTeam2 = wicketLossOfTeam2;
+        this.oversPlayByTeam2 = oversPlayByTeam2;
+
+    }
 }

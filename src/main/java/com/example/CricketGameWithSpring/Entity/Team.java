@@ -39,13 +39,13 @@ public class Team
         this.matchId = matchId;
         for(Player player : this.playersOfTeam){player.setMatchId(matchId);}
     }
-    public List<Player> getBowlerInTeam(){
+    public List<Player> getBowlerOrAllRounderInTeam(){
         List<Player> players = getPlayers();
-        List<Player> bowlerInTeam = players.stream()
-                .filter(player -> player.getPlayerRole().equals("Bowler"))
+        List<Player> bowlerOrAllRounderInTeam = players.stream()
+                .filter(player -> player.getPlayerRole().equals("Bowler") || player.getPlayerRole().equals("All-rounder"))
                 .collect(Collectors.toList());
-        if(bowlerInTeam.size()==1) {throw new InputValidationException("You have only inserted one bowler in the " + this.getTeamName() + " team. You need to have at least two bowlers.");};
-        return bowlerInTeam;
+        if(bowlerOrAllRounderInTeam.size()==1) {throw new InputValidationException("You have only inserted one bowler in the " + this.getTeamName() + " team. You need to have at least two bowlers.");};
+        return bowlerOrAllRounderInTeam;
     }
     public Player getBatsman(int BatsmanNo){return playersOfTeam.get(BatsmanNo);}
     public int getNextBowlerNo(int LastBowlerNo){

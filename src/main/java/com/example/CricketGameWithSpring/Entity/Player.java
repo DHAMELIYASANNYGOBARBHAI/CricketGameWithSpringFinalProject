@@ -35,6 +35,9 @@ public class Player
     private int wicketTakenByPlayer;
     private int ballBowledByPlayer;
     private int runConsiderByPlayer;
+
+
+
     public void addRunByPlayer(int run) {runScoredByPlayer += run;ballsFacedByPlayer++;}
     public void addBallAtWicketDown() {ballsFacedByPlayer++;}
     public void addRunConsiderByPlayer(int run) {runConsiderByPlayer +=run;ballBowledByPlayer++;}
