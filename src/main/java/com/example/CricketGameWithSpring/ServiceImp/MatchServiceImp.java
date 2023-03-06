@@ -61,5 +61,8 @@ public class MatchServiceImp implements MatchService
     }
 
 
-
+    public void setScoreBordServiceForTeam(Team team, ScoreBordService scoreBordService1)
+    {
+        scoreBordService = scoreBordService1;
+    }
 }

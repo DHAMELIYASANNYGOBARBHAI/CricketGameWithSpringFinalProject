@@ -21,7 +21,7 @@ public class PlayerInfoServiceImp implements PlayerInfoService {
         long tableExists = playerInfoDao.count();
         if (tableExists==0) {
 
-            System.out.println("hii");
+
             Random random = new Random();
 
             for (int i = 1; i <= 35; i++) {
@@ -35,6 +35,8 @@ public class PlayerInfoServiceImp implements PlayerInfoService {
 
             }
         }
+
+
 
     }
 }

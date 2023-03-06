@@ -36,6 +36,14 @@ public class Player
     private int ballBowledByPlayer;
     private int runConsiderByPlayer;
 
+    public Player(Long playerId, String playerName, String playerRole, String teamName, int matchId) {
+        this.playerId = playerId;
+        this.playerName = playerName;
+        this.playerRole = playerRole;
+        this.teamName = teamName;
+        this.matchId = matchId;
+    }
+
 
 
     public void addRunByPlayer(int run) {runScoredByPlayer += run;ballsFacedByPlayer++;}

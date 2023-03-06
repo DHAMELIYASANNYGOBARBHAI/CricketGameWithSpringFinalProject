@@ -5,6 +5,7 @@ import com.example.CricketGameWithSpring.ServiceImp.MatchServiceImp;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -34,6 +35,13 @@ public class PrintingScoreBordServiceImp implements PrintingScoreBordService
         List<String> inning2BallDetail = matchServiceImp.getScoreBordService().getDetailOfBall(matchServiceImp.getTeam2());
         scoreBoardInformation.addAll(inning2BallDetail);
 
+        scoreBoardInformation.removeAll(Collections.singleton(null));
+        scoreBoardInformation.removeAll(Collections.singleton(""));
+
         return scoreBoardInformation;
     }
 }
+
+
+
+

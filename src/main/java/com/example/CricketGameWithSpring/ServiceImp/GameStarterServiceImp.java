@@ -4,6 +4,7 @@ import com.example.CricketGameWithSpring.Dao.*;
 import com.example.CricketGameWithSpring.Entity.*;
 import com.example.CricketGameWithSpring.Exception.InputValidationException;
 import com.example.CricketGameWithSpring.Service.GameStarterService;
+import com.example.CricketGameWithSpring.Service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +14,28 @@ import java.util.List;
 @Service
 public class GameStarterServiceImp implements GameStarterService
 {
+
     @Autowired
     private MatchInfoDao matchInfoDao;
     @Autowired
     private PlayerInfoDao playerInfoDao;
     @Autowired
+    private MatchService matchService;
+    @Autowired
     private MatchServiceImp matchServiceImp;
+
+
     @Override
     public List<String> start(MatchDetails matchDetails)
     {
-        matchServiceImp.setMatchId(this.setCurrentMatchId());
+        matchServiceImp.setMatchId(this.getCurrentMatchId());
         matchServiceImp.setTeam1(getTeam(matchDetails.getTeam1Name(),matchDetails.getTeam1PlayerId()));
         matchServiceImp.setTeam2(getTeam(matchDetails.getTeam2Name(),matchDetails.getTeam2PlayerId()));
         matchServiceImp.setOvers(matchDetails.getOvers());
-        return matchServiceImp.startGame();
+        return matchService.startGame();
     }
 
-    public int setCurrentMatchId(){
+    public int getCurrentMatchId(){
         MatchInfo lastDocument = matchInfoDao.findFirstByOrderByIdDesc().orElse(null);
         if(lastDocument==null) return 1;
         else return lastDocument.getId()+1;
