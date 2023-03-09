@@ -12,5 +12,5 @@ public interface PlayerService {
     List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticSearchgetPlayerByPlayerNameUsingElasticsearch(String playerName);
 
 
-    PlayersAllDetail add(PlayersAllDetail playersAllDetail);
+//    Player add(Player player);
 }

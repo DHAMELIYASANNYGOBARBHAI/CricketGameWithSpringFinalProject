@@ -2,6 +2,7 @@ package com.example.CricketGameWithSpring.ServiceImp;
 
 import com.example.CricketGameWithSpring.Dao.PlayerDao;
 import com.example.CricketGameWithSpring.Elasticsearch.PlayerDaoUsingElasticsearch;
+//import com.example.CricketGameWithSpring.Elasticsearch.TempDao;
 import com.example.CricketGameWithSpring.Entity.Player;
 import com.example.CricketGameWithSpring.Entity.PlayersAllDetail;
 import com.example.CricketGameWithSpring.Service.PlayerService;
@@ -19,6 +20,10 @@ public class PlayerServiceImp implements PlayerService
     @Autowired
     PlayerDaoUsingElasticsearch playerDaoUsingElasticsearch;
 
+//    @Autowired
+//    TempDao tempDao;
+
+
     @Override
     public List<Player> getPlayerByPlayerName(String playerName)
     {
@@ -31,10 +36,10 @@ public class PlayerServiceImp implements PlayerService
 
     }
 
-    @Override
-    public PlayersAllDetail add(PlayersAllDetail playersAllDetail) {
-        return playerDaoUsingElasticsearch.save(playersAllDetail);
-    }
+//    @Override
+//    public Player add(Player player) {
+//        return tempDao.save(player);
+//    }
 
 
 }

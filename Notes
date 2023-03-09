@@ -14,6 +14,8 @@ brew services start elastic/tap/elasticsearch-full  ---> starting elasticsearch
 brew services stop elastic/tap/elasticsearch-full  ---> stopping elasticsearch
 
 curl http://localhost:9200    ---> information about our elasticsearch
+http://localhost:5601/    ---> information about kibbna
+
 
 brew services start elastic/tap/kibana-full ---> starting kibana
 brew services stop elastic/tap/kibana-full   ---> stopping kibana

@@ -97,11 +97,11 @@ public class  MyController
         return playerService.getPlayerByPlayerNameUsingElasticSearchgetPlayerByPlayerNameUsingElasticsearch(playerName);
     }
 
-   @GetMapping("/add")
-   PlayersAllDetail add(@RequestBody PlayersAllDetail playersAllDetail)
-   {
-       return playerService.add(playersAllDetail);
-   }
+//   @GetMapping("/add")
+//   Player add(@RequestBody Player player)
+//   {
+//       return playerService.add(player);
+//   }
 
 
 
