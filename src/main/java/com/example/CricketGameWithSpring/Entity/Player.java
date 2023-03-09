@@ -11,11 +11,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Index;
+import org.springframework.data.elasticsearch.annotations.Document;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Document(indexName = "Player_Index")
 public class Player
 {
     @Id

@@ -69,6 +69,8 @@ public class  MyController
         return playerService.getPlayerByPlayerName(playerName);
     }
 
+
+
     @GetMapping("/matchDetail/playerInfo/{playerRole}")
     List<PlayerInfo> getPlayerInfoByPlayerRole(@PathVariable String playerRole)
     {
@@ -89,6 +91,17 @@ public class  MyController
 
 
 
+    @GetMapping("/matchDetail/playerUsingElasticSearch/{playerName}")
+    List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticsearch(@PathVariable String playerName)
+    {
+        return playerService.getPlayerByPlayerNameUsingElasticSearchgetPlayerByPlayerNameUsingElasticsearch(playerName);
+    }
+
+   @GetMapping("/add")
+   PlayersAllDetail add(@RequestBody PlayersAllDetail playersAllDetail)
+   {
+       return playerService.add(playersAllDetail);
+   }
 
 
 

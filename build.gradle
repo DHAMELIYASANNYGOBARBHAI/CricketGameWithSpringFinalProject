@@ -37,6 +37,10 @@ dependencies {
 	testAnnotationProcessor("org.projectlombok:lombok:1.18.22")
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.6.2'
 
+	//	elasticsearch
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+	implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.4'
+
 
 }
 

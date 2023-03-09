@@ -1,8 +1,24 @@
+
+#Mongodb:
 brew services start mongodb-community@6.0  ---> mongo db start (server)
+brew services stop mongodb-community@6.0   ---> stopping mongodb
 
 
+#mysql:
 first start my sql server then -->
 /usr/local/mysql/bin/mysql -u root -p     ---> my sql start
+
+
+#elasticsearch:
+brew services start elastic/tap/elasticsearch-full  ---> starting elasticsearch
+brew services stop elastic/tap/elasticsearch-full  ---> stopping elasticsearch
+
+curl http://localhost:9200    ---> information about our elasticsearch
+
+brew services start elastic/tap/kibana-full ---> starting kibana
+brew services stop elastic/tap/kibana-full   ---> stopping kibana
+
+
 
 
 
