@@ -3,9 +3,7 @@ package com.example.CricketGameWithSpring.Controller;
 import com.example.CricketGameWithSpring.Entity.*;
 import com.example.CricketGameWithSpring.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
