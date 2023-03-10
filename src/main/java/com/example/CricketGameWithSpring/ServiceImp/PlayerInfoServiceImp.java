@@ -20,19 +20,14 @@ public class PlayerInfoServiceImp implements PlayerInfoService {
     public void checkPlayersInfoPresentOrNot() {
         long tableExists = playerInfoDao.count();
         if (tableExists==0) {
-
-
             Random random = new Random();
-
-            for (int i = 1; i <= 35; i++) {
+            for (int i = 1; i <= 40; i++) {
                 int id = i; // generate random ID between 1 and 100
                 String name = "Player" + i; // generate player name
                 String[] roles = {"Batsman", "Bowler", "All-rounder"}; // list of possible roles
                 String role = roles[random.nextInt(roles.length)]; // generate random role from list
                 PlayerInfo playerInfo = new PlayerInfo(id, name, role);
                 playerInfoDao.save(playerInfo);
-
-
             }
         }
 
