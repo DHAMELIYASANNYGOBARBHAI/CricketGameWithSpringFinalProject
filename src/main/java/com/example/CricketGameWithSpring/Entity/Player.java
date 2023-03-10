@@ -18,7 +18,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Document(indexName = "temp_player_index")
+//@Document(indexName = "temp_player_index")
 public class Player
 {
     @Id

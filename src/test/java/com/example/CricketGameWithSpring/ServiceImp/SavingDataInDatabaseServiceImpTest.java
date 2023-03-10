@@ -1,11 +1,13 @@
 package com.example.CricketGameWithSpring.ServiceImp;
 
 import com.example.CricketGameWithSpring.Dao.*;
+import com.example.CricketGameWithSpring.Elasticsearch.PlayerDaoUsingElasticsearch;
 import com.example.CricketGameWithSpring.Entity.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,9 +41,13 @@ class SavingDataInDatabaseServiceImpTest {
     @Mock
     public HistoryOfMatchDao historyOfCricketMatchDao;
 
+    @Mock
+    public PlayerDaoUsingElasticsearch playerDaoUsingElasticsearch;
+
     @Test
     void savingCricketMatchRelatedDataInDatabase() {
 
+      Player player = new Player();
 
 
         List<Player> playersTeam1 = new ArrayList<>();
@@ -77,13 +83,19 @@ class SavingDataInDatabaseServiceImpTest {
         matchServiceImp.setTeam1(team1);
         matchServiceImp.setTeam2(team2);
 
+
+
+        Mockito.when(playerDao.findFirstByOrderByIdDesc()).thenReturn(playersTeam1.get(0));
         savingDataInDatabaseServiceImp.savingCricketMatchRelatedDataInDatabase(matchServiceImp);
+
+
 
        verify(playerDao, times(matchServiceImp.getTeam1().getPlayersOfTeam().size()*2)).save(any(Player.class));
        verify(teamDetailDao,times(2)).save(any(TeamDetail.class));
        verify(scoreBordDetailsDao).save(new ScoreBordDetail(matchServiceImp));
        verify(matchInfoDao).save(new MatchInfo(matchServiceImp));
        verify(historyOfCricketMatchDao).save(new HistoryOfMatch(matchServiceImp));
+       verify(playerDaoUsingElasticsearch,times(5)).save(new PlayersAllDetail(playersTeam1.get(0)));
 
 
     }

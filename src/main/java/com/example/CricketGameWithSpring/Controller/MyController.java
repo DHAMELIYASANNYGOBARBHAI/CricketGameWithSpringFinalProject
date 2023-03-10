@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@Configurable
 public class  MyController
 {
     @Autowired
@@ -96,14 +95,6 @@ public class  MyController
     {
         return playerService.getPlayerByPlayerNameUsingElasticSearchgetPlayerByPlayerNameUsingElasticsearch(playerName);
     }
-
-//   @GetMapping("/add")
-//   Player add(@RequestBody Player player)
-//   {
-//       return playerService.add(player);
-//   }
-
-
 
 
 }
