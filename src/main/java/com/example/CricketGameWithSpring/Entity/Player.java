@@ -3,10 +3,7 @@ package com.example.CricketGameWithSpring.Entity;
 //import jakarta.persistence.Entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,25 +11,33 @@ import org.hibernate.annotations.Index;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@Document(indexName = "temp_player_index")
+@IdClass(PlayerId.class)
 public class Player
 {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Index(name = "indexPlayerId")
+//    private Long playerId;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Index(name = "indexPlayerId")
     private Long playerId;
+    @Id
+    private int matchId;
     @Index(name = "indexPlayerName")
     private String playerName;
     @Index(name = "indexPlayerRole")
     private String playerRole;
     @Index(name="indexTeamName")
     private String teamName;
-    @Index(name="indexMatchId")
-    private int matchId;
+
+//    @Index(name="indexMatchId")
+//    private int matchId;
+
     private int runScoredByPlayer;
     private int ballsFacedByPlayer;
     private int wicketTakenByPlayer;

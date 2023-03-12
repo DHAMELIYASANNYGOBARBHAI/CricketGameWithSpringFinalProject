@@ -5,6 +5,7 @@ import com.example.CricketGameWithSpring.Entity.*;
 import com.example.CricketGameWithSpring.Exception.InputValidationException;
 import com.example.CricketGameWithSpring.Service.GameStarterService;
 import com.example.CricketGameWithSpring.Service.MatchService;
+import com.example.CricketGameWithSpring.Service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,7 @@ public class GameStarterServiceImp implements GameStarterService
             int is_valid  = playerInfoDao.countById(id);
             if(is_valid > 0){
                 Player player = new Player();
+                player.setPlayerId((long) id);
                 player.setPlayerName(playerInfoDao.findNameById(id));
                 player.setPlayerRole(playerInfoDao.findRoleById(id));
                 playersOfTeam.add(player);
