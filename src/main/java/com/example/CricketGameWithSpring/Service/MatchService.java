@@ -8,6 +8,6 @@ import java.util.List;
 public interface MatchService
 {
     public List<String> startGame();
-    public int toss();
+
 
 }

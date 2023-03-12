@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 @EnableMongoRepositories
 public interface ScoreBordDetailsDao extends MongoRepository<ScoreBordDetail,Integer>{
-    ScoreBordDetail findBymatchID(int matchId);
+    public ScoreBordDetail findBymatchID(int matchId);
     @Query("{ $or: [ { 'team1Name': ?0 }, { 'team2Name': ?0 } ] }")
-    List<ScoreBordDetail> findScoreBordDetailOfMatchUsingTeam(String teamName1);
+    public List<ScoreBordDetail> findScoreBordDetailOfMatchUsingTeam(String teamName1);
 }

@@ -13,11 +13,11 @@ import java.util.Optional;
 public interface PlayerDao extends JpaRepository<Player, PlayerId>
 {
 
-    @Query(value = "SELECT * FROM Player p WHERE p.player_name = :playerName",nativeQuery = true)
-    List<Player> findByName(String playerName);
+    @Query(value = "SELECT * FROM PlayerInfoAtEveryMatch p WHERE p.player_name = :playerName",nativeQuery = true)
+    public List<Player> findByName(String playerName);
 
-    @Query(value = "SELECT * FROM Player p ORDER BY p.player_id DESC LIMIT 1", nativeQuery = true)
-    Player findFirstByOrderByIdDesc();
+    @Query(value = "SELECT * FROM PlayerInfoAtEveryMatch p ORDER BY p.player_id DESC LIMIT 1", nativeQuery = true)
+    public Player findFirstByOrderByIdDesc();
 
 }
 

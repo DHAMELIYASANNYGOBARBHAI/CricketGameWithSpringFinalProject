@@ -13,7 +13,7 @@ import java.util.List;
 public class TeamDetailServiceImp implements TeamDetailService
 {
     @Autowired
-    TeamDetailDao teamDetailDao;
+    private TeamDetailDao teamDetailDao;
     @Override
     public List<TeamDetail> getTeamDetailByTeamName(String teamName) {return teamDetailDao.findTeamDetailByTeamName(teamName);}
 }

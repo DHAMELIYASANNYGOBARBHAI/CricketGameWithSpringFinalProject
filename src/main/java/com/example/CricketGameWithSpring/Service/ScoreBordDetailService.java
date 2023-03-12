@@ -5,7 +5,7 @@ import com.example.CricketGameWithSpring.Entity.ScoreBordDetail;
 import java.util.List;
 
 public interface ScoreBordDetailService {
-    ScoreBordDetail getScoreBordDetailOfMatch(int matchId);
+   public ScoreBordDetail getScoreBordDetailOfMatch(int matchId);
 
-    List<ScoreBordDetail> getScoreBordDetailOfMatchUsingTeam(String teamName);
+    public List<ScoreBordDetail> getScoreBordDetailOfMatchUsingTeam(String teamName);
 }

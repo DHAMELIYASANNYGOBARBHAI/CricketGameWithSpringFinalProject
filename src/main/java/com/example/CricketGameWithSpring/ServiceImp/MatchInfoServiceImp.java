@@ -12,7 +12,7 @@ import java.util.List;
 public class MatchInfoServiceImp implements MatchInfoService {
 
     @Autowired
-    MatchInfoDao matchInfoDao;
+    private MatchInfoDao matchInfoDao;
     @Override
     public List<MatchInfo> getMatchInfoOfMatchUsingTeam(String teamName) {return matchInfoDao.findMatchInfoOfMatchUsingTeam(teamName);}
     @Override

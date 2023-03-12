@@ -12,7 +12,7 @@ import java.util.Random;
 @Service
 public class PlayerInfoServiceImp implements PlayerInfoService {
     @Autowired
-    PlayerInfoDao playerInfoDao;
+    private PlayerInfoDao playerInfoDao;
     @Override
     public List<PlayerInfo> getPlayerInfoByPlayerRole(String playerRole) {return playerInfoDao.findByRole(playerRole);}
 

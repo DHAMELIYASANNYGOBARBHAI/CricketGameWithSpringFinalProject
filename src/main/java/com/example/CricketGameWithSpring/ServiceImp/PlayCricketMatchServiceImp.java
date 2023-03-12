@@ -25,7 +25,7 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
             int lastBowlerNo = -1;
 
             Player strikerBatsman = battingTeam.getBatsman(batsmanNo++); // on strike
-            Player onStrikerBatsman = battingTeam.getBatsman(batsmanNo++); // off side
+            Player offStrikerBatsman = battingTeam.getBatsman(batsmanNo++); // off side
 
             for(int i=0;i<overs;i++)
             {
@@ -40,28 +40,41 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
 
                     if(run==wicket)
                     {
+
                         // consider as wicket for Now
                         Ball ball = new Ball(i,j,strikerBatsman.getPlayerName(),bowler.getPlayerName(),0,"WicketDown");
+
                         bowler.addWicketByPlayer();
-                        strikerBatsman.addBallAtWicketDown();
+                        bowler.addBallBowledByPlayer();
+
+                        strikerBatsman.addBallsFacedByPlayer();
+
                         battingTeam.addBallDetails(ball);
                         battingTeam.addWicketLoss();
+
                         if(battingTeam.getWicketLossOfTeam() == lastWicket) {return battingTeam.getScoreOfTeam();}
+
                         strikerBatsman = battingTeam.getBatsman(batsmanNo++);
                     }
                     else
                     {
                         // 0,1,2,3,4,5,6
                         Ball ball = new Ball(i,j,strikerBatsman.getPlayerName(),bowler.getPlayerName(),run,Integer.toString(run)+" Run gained On this Ball");
+
                         strikerBatsman.addRunByPlayer(run);
+                        strikerBatsman.addBallsFacedByPlayer();
+
                         bowler.addRunConsiderByPlayer(run);
+                        bowler.addBallBowledByPlayer();
+
                         battingTeam.addScore(run);
                         battingTeam.addBallDetails(ball);
+
                         if((run%2) == 1) {
-                            // Strike change  by batsman at run : 1,3,5  here we can use this also --->  Player tempPlayer = strikerBatsman;strikerBatsman = batsman2;batsman2 = tempPlayer;
-                            List<Player> newPositionOfBatsman=  StrikeChange(strikerBatsman,onStrikerBatsman);
-                            strikerBatsman = newPositionOfBatsman.get(0);
-                            onStrikerBatsman = newPositionOfBatsman.get(1);
+                            // Strike change  by batsman at run : 1,3,5  here we can use this also --->
+                            Player tempPlayer = strikerBatsman;
+                            strikerBatsman = offStrikerBatsman;
+                            offStrikerBatsman = tempPlayer;
                         }
 
                     }
@@ -69,9 +82,10 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
 
                 battingTeam.addOversPlay();
                 // Strike change every over
-                List<Player> newPositionOfBatsman =  StrikeChange(strikerBatsman,onStrikerBatsman);
-                strikerBatsman = newPositionOfBatsman.get(0);
-                onStrikerBatsman = newPositionOfBatsman.get(1);
+
+                Player tempPlayer = strikerBatsman;
+                strikerBatsman = offStrikerBatsman;
+                offStrikerBatsman = tempPlayer;
             }
 
             return battingTeam.getScoreOfTeam();
@@ -86,10 +100,5 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
         else return (int)(Math.random()*5);
     }
 
-    public List<Player> StrikeChange(Player batsman1, Player batsman2) {
-        List<Player> p =  new ArrayList<Player>();
-        p.add(batsman2);
-        p.add(batsman1);
-        return p;
-    }
+
 }

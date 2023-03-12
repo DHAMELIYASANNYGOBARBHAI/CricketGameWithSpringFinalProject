@@ -4,11 +4,13 @@ import com.example.CricketGameWithSpring.Entity.Ball;
 import com.example.CricketGameWithSpring.Entity.Player;
 import com.example.CricketGameWithSpring.Entity.Team;
 import com.example.CricketGameWithSpring.Service.ScoreBordService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+@Service
 public class ScoreBordServiceImp implements ScoreBordService
 {
 
@@ -44,7 +46,7 @@ public class ScoreBordServiceImp implements ScoreBordService
         tableRows.add("|     Name             |    Role  |  Wickets  |  RunConsider  | BallBowled |");
         tableRows.add("+----------------------+----------+-----------+---------------+------------+");
         for (Player p : player) {
-            if (p.getPlayerRole().equals("Bowler")) {
+            if (p.getPlayerRole().equals("Bowler") || p.getPlayerRole().equals("All-rounder")) {
                 tableRows.add(String.format("| %-20s | %-8s | %10d | %10d | %10d |", p.getPlayerName(), p.getPlayerRole(), p.getWicketTakenByPlayer(), p.getRunConsiderByPlayer(), p.getBallBowledByPlayer()));
             }
         }

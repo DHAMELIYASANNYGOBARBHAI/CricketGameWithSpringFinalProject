@@ -9,8 +9,4 @@ import java.util.List;
 public interface GameStarterService
 {
     public List<String> start(MatchDetails matchDetails);
-    public Team getTeam(String teamName, List<Integer> teamPlayerId);
-    public List<Player> getPlayersOfTeam(String teamName,List<Integer> teamPlayerId);
-
-
 }

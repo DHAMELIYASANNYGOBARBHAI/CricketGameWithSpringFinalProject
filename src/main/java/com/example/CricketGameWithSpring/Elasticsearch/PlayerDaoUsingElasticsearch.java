@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface PlayerDaoUsingElasticsearch extends ElasticsearchRepository<PlayersAllDetail,Long>
 {
-    List<PlayersAllDetail> findByPlayerName(String playerName);
+   public List<PlayersAllDetail> findByPlayerName(String playerName);
 }

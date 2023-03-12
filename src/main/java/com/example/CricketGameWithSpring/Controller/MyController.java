@@ -10,88 +10,83 @@ import java.util.List;
 public class  MyController
 {
     @Autowired
-    public CricketService cricketService;
+    private CricketService cricketService;
 
     @Autowired
-    public ScoreBordDetailService scoreBordDetailService;
+    private ScoreBordDetailService scoreBordDetailService;
 
     @Autowired
-    public MatchInfoService matchInfoService;
+    private MatchInfoService matchInfoService;
 
     @Autowired
-    HistoryOfMatchService historyOfMatchService;
+    private HistoryOfMatchService historyOfMatchService;
 
     @Autowired
-    PlayerInfoService playerInfoService;
+    private PlayerInfoService playerInfoService;
 
     @Autowired
-    PlayerService playerService;
+    private PlayerService playerService;
 
     @Autowired
-    TeamDetailService teamDetailService;
+    private TeamDetailService teamDetailService;
 
     @PostMapping("/startMatch")
-    public List<String> startMatch(@RequestBody MatchDetails matchDetails) {
+    private List<String> startMatch(@RequestBody MatchDetails matchDetails) {
 
         return cricketService.startGame(matchDetails);
     }
 
     @GetMapping("/matchDetail/scoreBordImp/{matchId}") //ScoreBordDetail
-    ScoreBordDetail getScoreBordDetailOfMatch(@PathVariable String matchId)
+    private ScoreBordDetail getScoreBordDetailOfMatch(@PathVariable String matchId)
     {
         return scoreBordDetailService.getScoreBordDetailOfMatch(Integer.parseInt(matchId));
     }
 
     @GetMapping("/matchDetail/scoreBordDetailUsingTeam/{teamName}") //ScoreBordDetail
-    List<ScoreBordDetail> getScoreBordDetailOfMatchUsingTeam(@PathVariable String teamName)
+    private List<ScoreBordDetail> getScoreBordDetailOfMatchUsingTeam(@PathVariable String teamName)
     {
         return scoreBordDetailService.getScoreBordDetailOfMatchUsingTeam(teamName);
     }
 
     @GetMapping("/matchDetail/matchInfo/{matchId}")
-    MatchInfo getMatchInfoOfMatch(@PathVariable String matchId)
+    private MatchInfo getMatchInfoOfMatch(@PathVariable String matchId)
     {
         return matchInfoService.getMatchInfoOfMatch(Integer.parseInt(matchId));
     }
 
     @GetMapping("/matchDetail/matchInfoUsingTeam/{teamName}")
-    List<MatchInfo> getMatchInfoOfMatchUsingTeam(@PathVariable String teamName)
+    private List<MatchInfo> getMatchInfoOfMatchUsingTeam(@PathVariable String teamName)
     {
         return matchInfoService.getMatchInfoOfMatchUsingTeam(teamName);
     }
 
     @GetMapping("/matchDetail/player/{playerName}")
-    List<Player> getPlayerByPlayerName(@PathVariable String playerName)
+    private List<Player> getPlayerByPlayerName(@PathVariable String playerName)
     {
         return playerService.getPlayerByPlayerName(playerName);
     }
 
-
-
     @GetMapping("/matchDetail/playerInfo/{playerRole}")
-    List<PlayerInfo> getPlayerInfoByPlayerRole(@PathVariable String playerRole)
+    private List<PlayerInfo> getPlayerInfoByPlayerRole(@PathVariable String playerRole)
     {
 
         return playerInfoService.getPlayerInfoByPlayerRole(playerRole);
     }
     @GetMapping("/matchDetail/teamDetail/{teamName}")
-    List<TeamDetail> getTeamDetailByTeamName(@PathVariable String teamName)
+    private List<TeamDetail> getTeamDetailByTeamName(@PathVariable String teamName)
     {
 
         return teamDetailService.getTeamDetailByTeamName(teamName);
     }
     @GetMapping("/historyOfMatchDetail/{matchId}")
-    HistoryOfMatch getMatchDetails(@PathVariable String matchId)
+    private HistoryOfMatch getMatchDetails(@PathVariable String matchId)
     {
         return historyOfMatchService.getMatchDetails(Integer.parseInt(matchId));
     }
-
-
-
     @GetMapping("/matchDetail/playerUsingElasticSearch/{playerName}")
-    List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticsearch(@PathVariable String playerName)
+    private List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticsearch(@PathVariable String playerName)
     {
-        return playerService.getPlayerByPlayerNameUsingElasticSearchgetPlayerByPlayerNameUsingElasticsearch(playerName);
+        return playerService.getPlayerByPlayerNameUsingElasticSearch(playerName);
     }
 
 

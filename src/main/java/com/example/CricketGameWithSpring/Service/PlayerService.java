@@ -7,9 +7,9 @@ import com.example.CricketGameWithSpring.Entity.PlayersAllDetail;
 import java.util.List;
 
 public interface PlayerService {
-    List<Player> getPlayerByPlayerName(String playerName);
+   public List<Player> getPlayerByPlayerName(String playerName);
 
-    List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticSearchgetPlayerByPlayerNameUsingElasticsearch(String playerName);
+   public List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticSearch(String playerName);
 
 
 }

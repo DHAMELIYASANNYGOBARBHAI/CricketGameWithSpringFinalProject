@@ -14,8 +14,8 @@ import java.util.Optional;
 @Repository
 @EnableMongoRepositories
 public interface MatchInfoDao extends MongoRepository<MatchInfo, Integer> {
-    Optional<MatchInfo> findFirstByOrderByIdDesc();
-    MatchInfo findById(int matchId);
+    public Optional<MatchInfo> findFirstByOrderByIdDesc();
+    public MatchInfo findById(int matchId);
     @Query("{ $or: [ { 'team1Name': ?0 }, { 'team2Name': ?0 } ] }")
-    List<MatchInfo> findMatchInfoOfMatchUsingTeam(String teamName);
+    public List<MatchInfo> findMatchInfoOfMatchUsingTeam(String teamName);
 }

@@ -12,7 +12,6 @@ import java.util.List;
 public class CricketServiceImp implements CricketService {
     @Autowired
     private GameStarterServiceImp gameStarterServiceImp;
-
     @Autowired
     private PlayerInfoService playerInfoService;
     @Override

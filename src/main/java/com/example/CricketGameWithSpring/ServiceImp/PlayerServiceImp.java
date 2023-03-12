@@ -15,10 +15,10 @@ import java.util.List;
 public class PlayerServiceImp implements PlayerService
 {
     @Autowired
-    PlayerDao playerDao;
+    private PlayerDao playerDao;
 
     @Autowired
-    PlayerDaoUsingElasticsearch playerDaoUsingElasticsearch;
+    private PlayerDaoUsingElasticsearch playerDaoUsingElasticsearch;
 
 
 
@@ -30,7 +30,7 @@ public class PlayerServiceImp implements PlayerService
     }
 
     @Override
-    public List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticSearchgetPlayerByPlayerNameUsingElasticsearch(String playerName) {
+    public List<PlayersAllDetail> getPlayerByPlayerNameUsingElasticSearch(String playerName) {
         return playerDaoUsingElasticsearch.findByPlayerName(playerName);
 
     }

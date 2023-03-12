@@ -7,9 +7,12 @@ import com.example.CricketGameWithSpring.Service.SavingDataInDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class SavingDataInDatabaseServiceImp implements SavingDataInDatabaseService
-{
+public class SavingDataInDatabaseServiceImp implements SavingDataInDatabaseService {
+
     @Autowired
     public ScoreBordDetailsDao scoreBordDetailsDao;
     @Autowired
@@ -20,29 +23,14 @@ public class SavingDataInDatabaseServiceImp implements SavingDataInDatabaseServi
     public MatchInfoDao matchInfoDao;
     @Autowired
     public HistoryOfMatchDao historyOfCricketMatchDao;
-
     @Autowired
     public PlayerDaoUsingElasticsearch playerDaoUsingElasticsearch;
 
     @Override
-    public void savingCricketMatchRelatedDataInDatabase(MatchServiceImp matchServiceImp){
+    public void savingCricketMatchRelatedDataInDatabase(MatchServiceImp matchServiceImp) {
 
-        for(Player player:matchServiceImp.getTeam1().getPlayersOfTeam())
-        {
-            player.setMatchId(matchServiceImp.getMatchId());
-            playerDao.save(player);
-            Player lastSavePlayer = playerDao.findFirstByOrderByIdDesc();
-            PlayersAllDetail playersAllDetail = new PlayersAllDetail(lastSavePlayer);
-            playerDaoUsingElasticsearch.save(playersAllDetail);
-        }
-
-        for(Player player:matchServiceImp.getTeam2().getPlayersOfTeam())
-        {
-            player.setMatchId(matchServiceImp.getMatchId());
-            playerDao.save(player);
-            PlayersAllDetail playersAllDetail = new PlayersAllDetail(player);
-            playerDaoUsingElasticsearch.save(playersAllDetail);
-        }
+        savePlayerInfoInDb(matchServiceImp.getTeam1().getPlayersOfTeam(), matchServiceImp.getMatchId());
+        savePlayerInfoInDb(matchServiceImp.getTeam2().getPlayersOfTeam(), matchServiceImp.getMatchId());
 
         TeamDetail team1Detail = new TeamDetail(matchServiceImp.getTeam1());
         teamDetailDao.save(team1Detail);
@@ -58,5 +46,17 @@ public class SavingDataInDatabaseServiceImp implements SavingDataInDatabaseServi
 
         HistoryOfMatch historyOfCricketMatch = new HistoryOfMatch(matchServiceImp);
         historyOfCricketMatchDao.save(historyOfCricketMatch);
+    }
+
+    private void savePlayerInfoInDb(List<Player> playersOfTeam, int matchId) {
+        List<PlayersAllDetail> playersAllDetailsOfTeam = new ArrayList<>();
+
+        for (Player player : playersOfTeam) {
+            player.setMatchId(matchId);
+            playersAllDetailsOfTeam.add(new PlayersAllDetail(player));
+        }
+
+        playerDao.saveAll(playersOfTeam);
+        playerDaoUsingElasticsearch.saveAll(playersAllDetailsOfTeam);
     }
 }

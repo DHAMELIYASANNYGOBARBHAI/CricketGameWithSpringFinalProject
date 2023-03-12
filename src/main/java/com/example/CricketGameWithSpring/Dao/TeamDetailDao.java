@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface TeamDetailDao extends JpaRepository<TeamDetail,Integer>{
     @Query(value = "SELECT * FROM team p WHERE p.team_name = :teamName",nativeQuery = true)
-    List<TeamDetail> findTeamDetailByTeamName(String teamName);
+    public List<TeamDetail> findTeamDetailByTeamName(String teamName);
 }

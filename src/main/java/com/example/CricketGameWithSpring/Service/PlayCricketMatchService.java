@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface PlayCricketMatchService {
     public int playCricketMatchBetweenTwoTeam(Team battingTeam,Team bowlingTeam,int Overs);
-    public int randomRunOrWicketGeneratorOnEveryBall();
-    public List<Player> StrikeChange(Player batsman1, Player batsman2);
+
+
 }

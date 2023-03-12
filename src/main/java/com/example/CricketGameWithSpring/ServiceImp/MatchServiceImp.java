@@ -17,11 +17,12 @@ public class MatchServiceImp implements MatchService
 
     @Autowired
     PlayCricketMatchService playCricketMatchService;
-
     @Autowired
     PrintingScoreBordService printingScoreBordService;
     @Autowired
     SavingDataInDatabaseService savingDataInDatabaseService;
+    @Autowired
+    ScoreBordService scoreBordService;
 
     private int matchId;
     private Team team1;
@@ -30,7 +31,8 @@ public class MatchServiceImp implements MatchService
     private String tossWinnerTeamName;
     private String matchWinnerTeamName;
     private List<String> fullScoreBordDetail;
-    private ScoreBordService scoreBordService = new ScoreBordServiceImp();
+
+//    private ScoreBordService scoreBordService = new ScoreBordServiceImp();
 
     public int toss() {return (int)(Math.random()*2);}
     public List<String> startGame(){
@@ -61,8 +63,5 @@ public class MatchServiceImp implements MatchService
     }
 
 
-    public void setScoreBordServiceForTeam(Team team, ScoreBordService scoreBordService1)
-    {
-        scoreBordService = scoreBordService1;
-    }
+
 }

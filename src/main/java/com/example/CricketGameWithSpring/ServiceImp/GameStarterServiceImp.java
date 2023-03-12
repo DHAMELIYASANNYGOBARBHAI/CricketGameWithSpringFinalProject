@@ -22,6 +22,7 @@ public class GameStarterServiceImp implements GameStarterService
     private PlayerInfoDao playerInfoDao;
     @Autowired
     private MatchService matchService;
+
     @Autowired
     private MatchServiceImp matchServiceImp;
 
@@ -41,7 +42,7 @@ public class GameStarterServiceImp implements GameStarterService
         if(lastDocument==null) return 1;
         else return lastDocument.getId()+1;
     }
-    @Override
+
     public Team getTeam(String teamName, List<Integer> teamPlayerId){
         List<Player> players = getPlayersOfTeam(teamName,teamPlayerId);
         Team team = new Team();
@@ -52,7 +53,7 @@ public class GameStarterServiceImp implements GameStarterService
         for(Player player : players) player.setTeamName(teamName);
         return team;
     }
-    @Override
+
     public List<Player> getPlayersOfTeam(String teamName,List<Integer> teamPlayerId){
         List<Player>  playersOfTeam = new ArrayList<Player>();
         for(int id : teamPlayerId){

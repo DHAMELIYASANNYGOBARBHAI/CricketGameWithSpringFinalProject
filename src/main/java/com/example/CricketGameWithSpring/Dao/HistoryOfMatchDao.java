@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HistoryOfMatchDao extends MongoRepository<HistoryOfMatch, Integer> {
-    HistoryOfMatch findByMatchId(int matchId);
+   public HistoryOfMatch findByMatchId(int matchId);
 }

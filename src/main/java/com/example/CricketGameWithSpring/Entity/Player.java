@@ -11,18 +11,12 @@ import org.hibernate.annotations.Index;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "PlayerInfoAtEveryMatch")
 @IdClass(PlayerId.class)
-public class Player
-{
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Index(name = "indexPlayerId")
-//    private Long playerId;
+public class Player {
 
     @Id
     private Long playerId;
@@ -32,17 +26,15 @@ public class Player
     private String playerName;
     @Index(name = "indexPlayerRole")
     private String playerRole;
-    @Index(name="indexTeamName")
+    @Index(name = "indexTeamName")
     private String teamName;
 
-//    @Index(name="indexMatchId")
-//    private int matchId;
 
-    private int runScoredByPlayer;
-    private int ballsFacedByPlayer;
-    private int wicketTakenByPlayer;
-    private int ballBowledByPlayer;
-    private int runConsiderByPlayer;
+    private int runScoredByPlayer=0;
+    private int ballsFacedByPlayer=0;
+    private int wicketTakenByPlayer=0;
+    private int ballBowledByPlayer=0;
+    private int runConsiderByPlayer=0;
 
     public Player(Long playerId, String playerName, String playerRole, String teamName, int matchId) {
         this.playerId = playerId;
@@ -53,10 +45,33 @@ public class Player
     }
 
 
+    public void addRunByPlayer(int run) {
+        runScoredByPlayer += run;
+        //ballsFacedByPlayer++;
+    }
 
-    public void addRunByPlayer(int run) {runScoredByPlayer += run;ballsFacedByPlayer++;}
-    public void addBallAtWicketDown() {ballsFacedByPlayer++;}
-    public void addRunConsiderByPlayer(int run) {runConsiderByPlayer +=run;ballBowledByPlayer++;}
-    public void addWicketByPlayer() {wicketTakenByPlayer++;ballBowledByPlayer++;}
+    public void addBallsFacedByPlayer()
+    {
+        ballsFacedByPlayer++;
+    }
+
+//    public void addBallAtWicketDown() {
+//        ballsFacedByPlayer++;
+//    }
+
+    public void addRunConsiderByPlayer(int run) {
+        runConsiderByPlayer += run;
+        //ballBowledByPlayer++;
+    }
+
+    public void addWicketByPlayer() {
+        wicketTakenByPlayer++;
+        //ballBowledByPlayer++;
+    }
+
+    public void addBallBowledByPlayer()
+    {
+        ballBowledByPlayer++;
+    }
 
 }

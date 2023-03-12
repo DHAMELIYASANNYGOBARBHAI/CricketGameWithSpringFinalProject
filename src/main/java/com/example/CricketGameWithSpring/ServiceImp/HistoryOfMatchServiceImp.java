@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HistoryOfMatchServiceImp implements HistoryOfMatchService {
     @Autowired
-    HistoryOfMatchDao historyOfMatchDao;
+    private HistoryOfMatchDao historyOfMatchDao;
     @Override
     public HistoryOfMatch getMatchDetails(int matchId){
         return historyOfMatchDao.findByMatchId(matchId);
