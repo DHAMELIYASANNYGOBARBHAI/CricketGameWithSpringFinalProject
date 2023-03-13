@@ -23,8 +23,11 @@ public class Player {
     private int matchId;
     @Index(name = "indexPlayerName")
     private String playerName;
+
     @Index(name = "indexPlayerRole")
-    private String playerRole;
+    @Enumerated(EnumType.STRING)
+    private PlayerRole playerRole;
+
     @Index(name = "indexTeamName")
     private String teamName;
 
@@ -35,7 +38,7 @@ public class Player {
     private int ballBowledByPlayer = 0;
     private int runConsiderByPlayer = 0;
 
-    public Player(Long playerId, String playerName, String playerRole, String teamName, int matchId) {
+    public Player(Long playerId, String playerName, PlayerRole playerRole, String teamName, int matchId) {
         this.playerId = playerId;
         this.playerName = playerName;
         this.playerRole = playerRole;
@@ -70,5 +73,6 @@ public class Player {
     public void addBallBowledByPlayer() {
         ballBowledByPlayer++;
     }
+
 
 }

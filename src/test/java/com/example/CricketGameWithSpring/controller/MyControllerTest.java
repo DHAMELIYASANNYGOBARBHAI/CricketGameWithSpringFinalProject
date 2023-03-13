@@ -49,12 +49,14 @@ class MyControllerTest {
     TeamDetailService teamDetailService;
     @InjectMocks
     private MyController myController;
+
     @BeforeEach
     void setUp() {
     }
     @AfterEach
     void tearDown() {
     }
+
     @Test
     void startMatch() throws Exception {
         List<String> scoreBordDetailOfCricketMatch = new ArrayList<>();
@@ -68,6 +70,7 @@ class MyControllerTest {
                         .andExpect(MockMvcResultMatchers.status().isOk())
                         .andExpect(MockMvcResultMatchers.content().json(expectedJson));
     }
+
     @Test
     void getScoreBordDetailOfMatch() throws Exception {
 
@@ -131,8 +134,8 @@ class MyControllerTest {
     @Test
     void getPlayerByPlayerName() throws Exception {
         List<Player> players = new ArrayList<>();
-        players.add(new Player(100L,1,"player1","All-Rounder","India",100,70,10,21,30));
-        players.add(new Player(100L,1,"player1","All-Rounder","India",101,60,10,21,30));
+        players.add(new Player(100L,1,"player1",PlayerRole.AllRounder,"India",100,70,10,21,30));
+        players.add(new Player(100L,1,"player1",PlayerRole.AllRounder,"India",101,60,10,21,30));
         when(playerService.getPlayerByPlayerName("player1")).thenReturn(players);
         String expectedJson = objectMapper.writeValueAsString(players);
         mockMvc.perform(MockMvcRequestBuilders.get("/matchDetail/player/player1"))
@@ -143,8 +146,8 @@ class MyControllerTest {
     @Test
     void getPlayerInfoByPlayerRole() throws Exception {
         List<PlayerInfo> playerInfos = new ArrayList<>();
-        playerInfos.add(new PlayerInfo(100,"player100","All-Rounder"));
-        playerInfos.add(new PlayerInfo(101,"player101","All-Rounder"));
+        playerInfos.add(new PlayerInfo(100,"player100",PlayerRole.AllRounder));
+        playerInfos.add(new PlayerInfo(101,"player101",PlayerRole.AllRounder));
         when(playerInfoService.getPlayerInfoByPlayerRole("All-Rounder")).thenReturn(playerInfos);
         String expectedJson = objectMapper.writeValueAsString(playerInfos);
         mockMvc.perform(MockMvcRequestBuilders.get("/matchDetail/playerInfo/All-Rounder"))
@@ -178,4 +181,6 @@ class MyControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(expectedJson));
     }
+
+
 }

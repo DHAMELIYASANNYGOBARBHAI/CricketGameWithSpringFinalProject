@@ -64,7 +64,7 @@ public class GameStarterServiceImp implements GameStarterService {
                 Player player = new Player();
                 player.setPlayerId((long) id);
                 player.setPlayerName(playerInfoDao.findNameById(id));
-                player.setPlayerRole(playerInfoDao.findRoleById(id));
+                player.setPlayerRole(PlayerRole.valueOf(playerInfoDao.findRoleById(id)));
                 playersOfTeam.add(player);
             } else {
                 throw new InputValidationException(

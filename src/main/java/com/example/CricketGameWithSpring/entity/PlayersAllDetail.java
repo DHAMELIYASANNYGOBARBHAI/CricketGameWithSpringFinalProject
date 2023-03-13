@@ -1,6 +1,8 @@
 package com.example.CricketGameWithSpring.entity;
 
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.IdClass;
 import lombok.AllArgsConstructor;
@@ -25,7 +27,9 @@ public class PlayersAllDetail {
     private Long playerId;
     private int matchId;
     private String playerName;
-    private String playerRole;
+
+    @Enumerated(EnumType.STRING)
+    private PlayerRole playerRole;
     private String teamName;
     private int runScoredByPlayer;
     private int ballsFacedByPlayer;

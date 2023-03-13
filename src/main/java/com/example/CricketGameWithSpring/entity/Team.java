@@ -61,7 +61,7 @@ public class Team {
         List<Player> players = getPlayers();
 
         List<Player> bowlerOrAllRounderInTeam = players.stream().filter(player -> {
-            String role = player.getPlayerRole();
+            String role = player.getPlayerRole().name();
             return role != null && (role.equals("Bowler") || role.equals("All-rounder"));
         }).collect(Collectors.toList());
 

@@ -49,11 +49,11 @@ class SavingDataInDatabaseServiceImpTest {
 
 
         List<Player> playersTeam1 = new ArrayList<>();
-        playersTeam1.add(new Player(1L,"John", "Batsman","India",1));
-        playersTeam1.add(new Player(2L,"Mike", "Batsman","India",1));
-        playersTeam1.add(new Player(3L,"Sarah", "All-rounder","India",1));
-        playersTeam1.add(new Player(4L,"David", "Bowler","India",1));
-        playersTeam1.add(new Player(5L,"Jessica", "Bowler", "India",1));
+        playersTeam1.add(new Player(1L,"John", PlayerRole.Batsman,"India",1));
+        playersTeam1.add(new Player(2L,"Mike",PlayerRole.Batsman ,"India",1));
+        playersTeam1.add(new Player(3L,"Sarah", PlayerRole.AllRounder,"India",1));
+        playersTeam1.add(new Player(4L,"David", PlayerRole.Bowler,"India",1));
+        playersTeam1.add(new Player(5L,"Jessica", PlayerRole.Bowler, "India",1));
 
         // create bowlers for team 1
         List<Player> bowlersTeam1 = new ArrayList<>();
@@ -62,11 +62,11 @@ class SavingDataInDatabaseServiceImpTest {
 
         // create players for team 2
         List<Player> playersTeam2 = new ArrayList<>();
-        playersTeam2.add(new Player(1L,"Tom", "Batsman","PAK",1));
-        playersTeam2.add(new Player(2L,"Anna", "Batsman", "PAK",1));
-        playersTeam2.add(new Player(3L,"Steve", "All-rounder", "PAK",1));
-        playersTeam2.add(new Player(4L,"Samantha", "Bowler", "PAK",1));
-        playersTeam2.add(new Player(5L,"Alex", "Bowler", "PAK",1));
+        playersTeam2.add(new Player(1L,"Tom", PlayerRole.Batsman,"PAK",1));
+        playersTeam2.add(new Player(2L,"Anna", PlayerRole.Batsman, "PAK",1));
+        playersTeam2.add(new Player(3L,"Steve", PlayerRole.AllRounder, "PAK",1));
+        playersTeam2.add(new Player(4L,"Samantha", PlayerRole.Bowler, "PAK",1));
+        playersTeam2.add(new Player(5L,"Alex", PlayerRole.Bowler, "PAK",1));
 
         // create bowlers for team 2
         List<Player> bowlersTeam2 = new ArrayList<>();
