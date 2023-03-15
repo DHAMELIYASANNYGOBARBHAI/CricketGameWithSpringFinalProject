@@ -36,7 +36,15 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
                 if (run == wicket) {
 
                     // consider as wicket for Now
-                    Ball ball = new Ball(i, j, strikerBatsman.getPlayerName(), bowler.getPlayerName(), 0, "WicketDown");
+
+           Ball ball =  Ball.builder()
+                            .nameOfBatsmanWhoPlayBall(strikerBatsman.getPlayerName())
+                            .overNoOfBall(i)
+                            .serialNoOfBall(j)
+                            .typeOfBall("WicketDown")
+                            .runsCoveredOnBall(0)
+                            .nameOfBowlerWhoBowledBall(bowler.getPlayerName())
+                            .build();
 
                     bowler.addWicketByPlayer();
                     bowler.addBallBowledByPlayer();
@@ -53,8 +61,15 @@ public class PlayCricketMatchServiceImp implements PlayCricketMatchService {
                     strikerBatsman = battingTeam.getBatsman(batsmanNo++);
                 } else {
                     // 0,1,2,3,4,5,6
-                    Ball ball = new Ball(i, j, strikerBatsman.getPlayerName(), bowler.getPlayerName(), run,
-                            Integer.toString(run) + " Run gained On this Ball");
+
+                    Ball ball =  Ball.builder()
+                                     .nameOfBatsmanWhoPlayBall(strikerBatsman.getPlayerName())
+                                     .overNoOfBall(i)
+                                     .serialNoOfBall(j)
+                                     .typeOfBall(Integer.toString(run) + " Run gained On this Ball")
+                                     .runsCoveredOnBall(run)
+                                     .nameOfBowlerWhoBowledBall(bowler.getPlayerName())
+                                     .build();
 
                     strikerBatsman.addRunByPlayer(run);
                     strikerBatsman.addBallsFacedByPlayer();

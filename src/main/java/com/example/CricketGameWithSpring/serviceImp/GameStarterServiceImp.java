@@ -45,11 +45,15 @@ public class GameStarterServiceImp implements GameStarterService {
 
     public Team getTeam(String teamName, List<Integer> teamPlayerId) {
         List<Player> players = getPlayersOfTeam(teamName, teamPlayerId);
-        Team team = new Team();
-        team.setMatchId(matchServiceImp.getMatchId());
-        team.setTeamName(teamName);
-        team.setPlayersOfTeam(players);
+       // Team team = new Team();
+        Team team = Team.builder()
+                .matchId(matchServiceImp.getMatchId())
+                .teamName(teamName)
+                .playersOfTeam(players)
+                        .build();
+
         team.setBowlersInTeam(team.getBowlerOrAllRounderInTeam());
+
         for (Player player : players) {
             player.setTeamName(teamName);
         }
@@ -61,11 +65,14 @@ public class GameStarterServiceImp implements GameStarterService {
         for (int id : teamPlayerId) {
             int is_valid = playerInfoDao.countById(id);
             if (is_valid > 0) {
-                Player player = new Player();
-                player.setPlayerId((long) id);
-                player.setPlayerName(playerInfoDao.findNameById(id));
-                player.setPlayerRole(PlayerRole.valueOf(playerInfoDao.findRoleById(id)));
+//
+                Player player = Player.builder()
+                                      .playerId((long)id)
+                                      .playerName(playerInfoDao.findNameById(id))
+                                      .playerRole(PlayerRole.valueOf(playerInfoDao.findRoleById(id)))
+                                      .build();
                 playersOfTeam.add(player);
+
             } else {
                 throw new InputValidationException(
                         "I'm sorry, it appears that the input ID provided is not valid in " + teamName +

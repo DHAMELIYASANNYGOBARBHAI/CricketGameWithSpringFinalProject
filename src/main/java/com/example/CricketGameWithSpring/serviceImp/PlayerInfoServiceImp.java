@@ -30,12 +30,14 @@ public class PlayerInfoServiceImp implements PlayerInfoService {
                 int id = i; // generate random ID between 1 and 100
                 String name = "Player" + i; // generate player name
 
-               // String[] roles = { "Batsman", "Bowler", "All-rounder" }; // list of possible roles
-               // String role = roles[]; // generate random role from list
-
                 PlayerRole playerRole = PlayerRole.values()[random.nextInt(PlayerRole.values().length)];
 
-                PlayerInfo playerInfo = new PlayerInfo(id, name, playerRole);
+               PlayerInfo playerInfo = PlayerInfo.builder()
+                        .playerId(id)
+                        .playerName(name)
+                        .playerRole(playerRole)
+                        .build();
+
                 playerInfoDao.save(playerInfo);
             }
         }

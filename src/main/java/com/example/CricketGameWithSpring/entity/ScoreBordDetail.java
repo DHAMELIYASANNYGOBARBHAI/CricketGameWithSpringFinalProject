@@ -3,6 +3,7 @@ package com.example.CricketGameWithSpring.entity;
 import com.example.CricketGameWithSpring.serviceImp.MatchServiceImp;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
@@ -16,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Document(collection = "ScoreBordDetail")
 @CompoundIndex(name = "indexTeam1Name", def = "{'team1Name':1}")
+@Builder
 public class ScoreBordDetail {
 
     @Id

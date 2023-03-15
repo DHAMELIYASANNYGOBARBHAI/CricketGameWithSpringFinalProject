@@ -5,6 +5,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Index;
@@ -13,6 +14,7 @@ import org.hibernate.annotations.Index;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class PlayerInfo {
 
     @Id

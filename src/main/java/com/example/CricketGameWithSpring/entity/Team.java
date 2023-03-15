@@ -2,6 +2,7 @@ package com.example.CricketGameWithSpring.entity;
 
 import com.example.CricketGameWithSpring.exception.InputValidationException;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Team {
 
     private int matchId;

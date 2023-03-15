@@ -5,6 +5,7 @@ package com.example.CricketGameWithSpring.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Index;
@@ -15,6 +16,7 @@ import org.hibernate.annotations.Index;
 @NoArgsConstructor
 @Entity(name = "PlayerInfoAtEveryMatch")
 @IdClass(PlayerId.class)
+@Builder
 public class Player {
 
     @Id

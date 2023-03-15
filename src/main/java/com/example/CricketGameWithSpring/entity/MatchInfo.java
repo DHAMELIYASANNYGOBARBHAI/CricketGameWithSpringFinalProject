@@ -3,6 +3,7 @@ package com.example.CricketGameWithSpring.entity;
 import com.example.CricketGameWithSpring.serviceImp.MatchServiceImp;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -14,6 +15,7 @@ import java.util.List;
 @Document(collection = "MatchInfo")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class MatchInfo {
 
     public MatchInfo(int id, String team1Name, String team2Name, String tossWinnerTeamName,
