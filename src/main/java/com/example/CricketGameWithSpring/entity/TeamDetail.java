@@ -24,7 +24,7 @@ public class TeamDetail {
     private String teamName;
     private int scoreOfTeam;
     private int wicketLossOfTeam;
-    private int oversPlayByTeam = 0;
+    private int oversPlayByTeam;
 
     public TeamDetail(Team team) {
         this.matchId = team.getMatchId();

@@ -21,9 +21,9 @@ public class Team {
     private int scoreOfTeam;
     private int wicketLossOfTeam;
     private int oversPlayByTeam;
-    private List<Player> playersOfTeam = new ArrayList<>();
-    private List<Ball> ballDetailsOfTeam = new ArrayList<>();
-    private List<Player> bowlersInTeam = new ArrayList<>();
+    private List<Player> playersOfTeam;
+    private List<Ball> ballDetailsOfTeam;
+    private List<Player> bowlersInTeam;
 
     public Team(int matchId, String teamName, List<Player> playersOfTeam, List<Player> bowlersInTeam) {
         this.matchId = matchId;

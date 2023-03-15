@@ -34,11 +34,11 @@ public class Player {
     private String teamName;
 
 
-    private int runScoredByPlayer = 0;
-    private int ballsFacedByPlayer = 0;
-    private int wicketTakenByPlayer = 0;
-    private int ballBowledByPlayer = 0;
-    private int runConsiderByPlayer = 0;
+    private int runScoredByPlayer;
+    private int ballsFacedByPlayer;
+    private int wicketTakenByPlayer;
+    private int ballBowledByPlayer;
+    private int runConsiderByPlayer;
 
     public Player(Long playerId, String playerName, PlayerRole playerRole, String teamName, int matchId) {
         this.playerId = playerId;

@@ -50,6 +50,8 @@ public class GameStarterServiceImp implements GameStarterService {
                 .matchId(matchServiceImp.getMatchId())
                 .teamName(teamName)
                 .playersOfTeam(players)
+                .bowlersInTeam(new ArrayList<>())
+                .ballDetailsOfTeam(new ArrayList<>())
                         .build();
 
         team.setBowlersInTeam(team.getBowlerOrAllRounderInTeam());
